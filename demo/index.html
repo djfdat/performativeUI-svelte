@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Synthetica — AI for the next generation of work ✨</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://cdn.simpleicons.org" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- ====================================================================
+         CLICHÉ 00 — Sticky top pill: "We just raised $X" / "Now in YC W26"
+         ==================================================================== -->
+    <div class="top-pill">
+      <span class="sparkle">✦</span>
+      <span>Backed by Y Combinator (W26) — we just raised our seed</span>
+      <span class="arrow">→</span>
+    </div>
+
+    <!-- ====================================================================
+         CLICHÉ 01 — Nav: minimal, monospace logo, "Talk to sales" CTA
+         ==================================================================== -->
+    <nav class="nav">
+      <a class="brand" href="#">
+        <span class="brand-mark">◣</span>
+        <span class="brand-name">synthetica</span>
+        <span class="brand-tag">beta</span>
+      </a>
+      <div class="nav-links">
+        <a href="#">Product</a>
+        <a href="#">Solutions</a>
+        <a href="#">Customers</a>
+        <a href="#">Pricing</a>
+        <a href="#">Docs</a>
+        <a href="#">Blog</a>
+      </div>
+      <div class="nav-cta">
+        <a class="nav-login" href="#">Log in</a>
+        <a class="btn btn-shimmer" href="#">
+          <span>Start building</span>
+          <span class="sparkle">✦</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- ====================================================================
+         CLICHÉ 02 — HERO with stacked decorative layers:
+           a. aurora gradient background
+           b. node graph particles
+           c. floating sparkles
+           d. typewriter rotator headline
+           e. gradient-text subhead with vague cosmic copy
+           f. prompt-input-as-CTA (ChatGPT box hero)
+           g. sparkle "Generate" + ghost "Talk to sales" dual CTA
+           h. tiny "Powered by [frontier model]" badge
+         ==================================================================== -->
+    <header class="hero">
+      <div class="aurora"></div>
+      <div id="node-graph" class="node-graph"></div>
+      <div id="sparkle-field" class="sparkle-field"></div>
+
+      <div class="hero-inner">
+        <span class="hero-eyebrow">
+          <span class="dot"></span>
+          <span>Now with GPT-5.5 Turbo Vision Pro</span>
+        </span>
+
+        <h1 class="hero-headline">
+          <span>AI for </span>
+          <span class="rotator" id="rotator-hero">
+            <span class="rotator-current"></span><span class="rotator-cursor">▍</span>
+          </span>
+        </h1>
+
+        <p class="hero-sub">
+          The end-to-end platform for teams who refuse to ship
+          <span class="grad-text">slop</span>. Built on the frontier. Designed for
+          <span class="grad-text">velocity</span>.
+        </p>
+
+        <form class="prompt-hero" onsubmit="event.preventDefault();">
+          <span class="prompt-sparkle">✦</span>
+          <input
+            id="prompt-hero"
+            type="text"
+            placeholder="Describe what you want to build…"
+            autocomplete="off"
+          />
+          <button class="btn btn-glow" type="submit">
+            <span>Generate</span>
+            <span class="sparkle">✦</span>
+          </button>
+        </form>
+
+        <div class="hero-ctas">
+          <a class="btn btn-ghost" href="#">
+            <span>Talk to sales</span>
+            <span class="arrow">→</span>
+          </a>
+          <a class="hero-secondary" href="#">
+            <span class="play-icon">▶</span>
+            <span>Watch the 90-second demo</span>
+          </a>
+        </div>
+
+        <div class="powered-by">
+          <span>Powered by</span>
+          <img class="brand-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@11/icons/openai.svg" alt="OpenAI" />
+          <span>·</span>
+          <img class="brand-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@11/icons/anthropic.svg" alt="Anthropic" />
+          <span>·</span>
+          <img class="brand-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@11/icons/googlegemini.svg" alt="Gemini" />
+        </div>
+      </div>
+
+      <div class="hero-scroll-hint">
+        <span>scroll</span>
+        <span class="scroll-arrow">↓</span>
+      </div>
+    </header>
+
+    <!-- ====================================================================
+         CLICHÉ 03 — Trust bar: "Trusted by 50,000+ builders" with animated
+                     counter + grayscale logo marquee on infinite scroll.
+                     Absurd logo combos by design.
+         ==================================================================== -->
+    <section class="trust-bar">
+      <p class="trust-headline">
+        Trusted by
+        <span class="counter" data-target="51842">0</span>
+        builders at the world's most ambitious teams
+      </p>
+      <div class="marquee">
+        <div class="marquee-track" id="marquee-track"></div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         CLICHÉ 04 — Stat flex row: parameter / token / GPU brags that
+                     mean nothing to the buyer.
+         ==================================================================== -->
+    <section class="stat-flex">
+      <div class="stat">
+        <div class="stat-num grad-text">10B+</div>
+        <div class="stat-label">tokens processed daily</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num grad-text">99.99%</div>
+        <div class="stat-label">uptime SLA</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num grad-text">&lt;200ms</div>
+        <div class="stat-label">p50 latency, anywhere</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num grad-text">SOC 2</div>
+        <div class="stat-label">Type II · HIPAA · GDPR</div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         CLICHÉ 05 — ASCII hero block, mouse-reactive ripple.
+                     Signals "for hackers, by hackers."
+         ==================================================================== -->
+    <section class="ascii-section">
+      <div class="section-eyebrow">
+        <span class="dot"></span>
+        <span>The brutalist hero</span>
+      </div>
+      <h2 class="section-title">
+        Built for the
+        <span class="grad-text">terminal-native</span>
+        generation
+      </h2>
+      <pre class="ascii-hero" id="ascii-hero"></pre>
+      <p class="section-caption">move your cursor over it. yes, we know.</p>
+    </section>
+
+    <!-- ====================================================================
+         CLICHÉ 06 — Mock terminal / IDE with "AI writing code" stream.
+                     Token-by-token reveal inside.
+         ==================================================================== -->
+    <section class="ide-section">
+      <div class="section-eyebrow">
+        <span class="dot"></span>
+        <span>Watch AI ship for you</span>
+      </div>
+      <h2 class="section-title">
+        Your <span class="grad-text">copilot</span>, but it actually merges
+      </h2>
+      <div class="mock-ide">
+        <div class="ide-chrome">
+          <span class="ide-dot red"></span>
+          <span class="ide-dot yellow"></span>
+          <span class="ide-dot green"></span>
+          <span class="ide-tab">~/synthetica/app/api/route.ts</span>
+          <span class="ide-thinking">
+            <span class="thinking-spinner"></span>
+            <span>AI is writing…</span>
+          </span>
+        </div>
+        <pre class="ide-body" id="ide-body"></pre>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         CLICHÉ 07 — Three glassmorphism feature cards with sparkle icons,
+                     gradient text, breathing borders, vague cosmic copy.
+         ==================================================================== -->
+    <section class="cards-section">
+      <div class="section-eyebrow">
+        <span class="dot"></span>
+        <span>The platform</span>
+      </div>
+      <h2 class="section-title">
+        Three primitives. <span class="grad-text">Infinite</span> possibility.
+      </h2>
+      <div class="cards">
+        <article class="glass-card">
+          <div class="card-icon">✦</div>
+          <h3>Reason</h3>
+          <p>
+            A frontier-class reasoning engine that thinks before it speaks.
+            Multi-step. Multi-modal. Multi-vendor.
+          </p>
+          <a href="#" class="card-link">
+            <span>Learn more</span><span class="arrow">→</span>
+          </a>
+        </article>
+        <article class="glass-card">
+          <div class="card-icon">◇</div>
+          <h3>Retrieve</h3>
+          <p>
+            Bring your private knowledge to the model. Vector, hybrid, graph —
+            we pick the right index for every query, every time.
+          </p>
+          <a href="#" class="card-link">
+            <span>Learn more</span><span class="arrow">→</span>
+          </a>
+        </article>
+        <article class="glass-card">
+          <div class="card-icon">◆</div>
+          <h3>Act</h3>
+          <p>
+            Agents that don't just respond. They schedule, draft, deploy, and
+            refund. With audit logs your security team will actually like.
+          </p>
+          <a href="#" class="card-link">
+            <span>Learn more</span><span class="arrow">→</span>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         CLICHÉ 08 — Stop X. Start Y. rotator (the moral binary).
+         ==================================================================== -->
+    <section class="stop-start">
+      <h2 class="big-statement">
+        Stop
+        <span class="rotator stop" id="rotator-stop">
+          <span class="rotator-current"></span>
+        </span>.
+        <br />
+        Start
+        <span class="rotator start" id="rotator-start">
+          <span class="rotator-current"></span>
+        </span>.
+      </h2>
+    </section>
+
+    <!-- ====================================================================
+         CLICHÉ 09 — Before / After AI split, with the bad version
+                     conspicuously gray and the good version glowing.
+         ==================================================================== -->
+    <section class="before-after">
+      <div class="section-eyebrow">
+        <span class="dot"></span>
+        <span>The transformation</span>
+      </div>
+      <h2 class="section-title">
+        The old way is <span class="grad-text strikethrough">fine</span> broken.
+      </h2>
+      <div class="ba-grid">
+        <div class="ba-panel ba-before">
+          <div class="ba-tag">Before</div>
+          <ul>
+            <li>14 tabs open</li>
+            <li>3 hours of meetings about meetings</li>
+            <li>A spreadsheet from 2019</li>
+            <li>Vibes-based prioritization</li>
+            <li>Slack at 11pm</li>
+          </ul>
+        </div>
+        <div class="ba-arrow">
+          <span class="sparkle">✦</span>
+          <span>with Synthetica</span>
+          <span class="arrow">→</span>
+        </div>
+        <div class="ba-panel ba-after">
+          <div class="ba-tag">After</div>
+          <ul>
+            <li>One pane of glass</li>
+            <li>Async by default</li>
+            <li>Your data, working</li>
+            <li>Outcome-driven</li>
+            <li>Inbox zero, sustainably</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         CLICHÉ 10 — Token-by-token streaming demo "in a chat bubble".
+         ==================================================================== -->
+    <section class="stream-section">
+      <div class="section-eyebrow">
+        <span class="dot"></span>
+        <span>See it think</span>
+      </div>
+      <h2 class="section-title">
+        Reasoning you can <span class="grad-text">watch happen</span>.
+      </h2>
+      <div class="chat">
+        <div class="chat-bubble user">
+          Summarize Q3 churn by cohort and tell me what's bleeding.
+        </div>
+        <div class="chat-bubble ai">
+          <div class="ai-meta">
+            <span class="sparkle">✦</span>
+            <span>Synthetica</span>
+            <span class="ai-thinking-pill">
+              <span class="thinking-spinner small"></span>
+              <span id="stream-thinking-label">reasoning…</span>
+            </span>
+          </div>
+          <div class="ai-stream" id="ai-stream"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         CLICHÉ 11 — Pricing with the Pro tier carrying the sparkle and
+                     "Most Popular" badge. Credit-based "Enterprise" tier.
+         ==================================================================== -->
+    <section class="pricing">
+      <div class="section-eyebrow">
+        <span class="dot"></span>
+        <span>Pricing</span>
+      </div>
+      <h2 class="section-title">
+        Simple, <span class="grad-text">usage-based</span> pricing.
+      </h2>
+      <div class="price-cards">
+        <article class="price-card">
+          <div class="price-tier">Hobby</div>
+          <div class="price-amount">$0<span>/mo</span></div>
+          <p class="price-blurb">For weekend experiments.</p>
+          <ul class="price-features">
+            <li>10K tokens / day</li>
+            <li>Community support</li>
+            <li>1 project</li>
+          </ul>
+          <a class="btn btn-ghost wide" href="#">Start free</a>
+        </article>
+        <article class="price-card featured">
+          <div class="price-flag">
+            <span class="sparkle">✦</span>
+            <span>Most popular</span>
+          </div>
+          <div class="price-tier">Pro</div>
+          <div class="price-amount">$49<span>/mo</span></div>
+          <p class="price-blurb">For the serious solo builder.</p>
+          <ul class="price-features">
+            <li>1M tokens / day</li>
+            <li>Priority routing</li>
+            <li>Unlimited projects</li>
+            <li>Eval dashboard</li>
+          </ul>
+          <a class="btn btn-glow wide" href="#">
+            <span>Upgrade</span><span class="sparkle">✦</span>
+          </a>
+        </article>
+        <article class="price-card">
+          <div class="price-tier">Enterprise</div>
+          <div class="price-amount">Custom</div>
+          <p class="price-blurb">For teams who say "leverage" a lot.</p>
+          <ul class="price-features">
+            <li>Volume credits</li>
+            <li>SOC 2 / HIPAA</li>
+            <li>VPC deploy</li>
+            <li>Dedicated SE</li>
+          </ul>
+          <a class="btn btn-ghost wide" href="#">Talk to sales</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         CLICHÉ 12 — "As seen in" press logos (TechCrunch / Forbes / etc.)
+         ==================================================================== -->
+    <section class="press">
+      <p class="press-headline">As seen in</p>
+      <div class="press-logos">
+        <span class="press-logo serif">TechCrunch</span>
+        <span class="press-logo serif italic">The Information</span>
+        <span class="press-logo serif">Forbes</span>
+        <span class="press-logo sans bold">BLOOMBERG</span>
+        <span class="press-logo serif">The New York Times</span>
+        <span class="press-logo sans">WIRED</span>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         CLICHÉ 13 — "Backed by" investor row + university row.
+         ==================================================================== -->
+    <section class="backers">
+      <div class="backer-group">
+        <p class="backer-headline">Backed by</p>
+        <div class="backer-logos">
+          <img class="brand-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@11/icons/ycombinator.svg" alt="YC" />
+          <span class="text-logo">a16z</span>
+          <span class="text-logo serif italic">Sequoia</span>
+          <span class="text-logo">FOUNDERS&nbsp;FUND</span>
+          <span class="text-logo">SV ANGEL</span>
+          <span class="text-logo italic">…and 47 angels you've heard of</span>
+        </div>
+      </div>
+      <div class="backer-group">
+        <p class="backer-headline">From alumni of</p>
+        <div class="backer-logos">
+          <span class="text-logo serif">Stanford</span>
+          <span class="text-logo serif">MIT</span>
+          <span class="text-logo serif">Berkeley</span>
+          <span class="text-logo serif italic">Harvard</span>
+          <span class="text-logo">OpenAI</span>
+          <span class="text-logo">DeepMind</span>
+          <span class="text-logo">Stripe</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         CLICHÉ 14 — Waitlist CTA with builder count.
+         ==================================================================== -->
+    <section class="waitlist">
+      <div class="aurora aurora-sub"></div>
+      <h2 class="section-title centered">
+        Join <span class="grad-text">8,247</span> builders on the waitlist.
+      </h2>
+      <p class="waitlist-sub">
+        We're rolling out access weekly. The earlier you join, the earlier you
+        get in.
+      </p>
+      <form class="waitlist-form" onsubmit="event.preventDefault();">
+        <input type="email" placeholder="you@startup.ai" />
+        <button class="btn btn-glow" type="submit">
+          <span>Join the waitlist</span>
+          <span class="sparkle">✦</span>
+        </button>
+      </form>
+      <div class="waitlist-meta">
+        <span>✦ No credit card</span>
+        <span>·</span>
+        <span>✦ Cancel anytime</span>
+        <span>·</span>
+        <span>✦ Your data stays yours</span>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         CLICHÉ 15 — Community badges (GitHub stars, Discord, Slack).
+         ==================================================================== -->
+    <section class="community">
+      <a class="community-badge" href="#">
+        <img class="brand-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@11/icons/github.svg" alt="GitHub" />
+        <div>
+          <div class="cb-top">Star us on GitHub</div>
+          <div class="cb-bottom">
+            <span id="gh-stars">12,847</span> stars · <span>+184 this week</span>
+          </div>
+        </div>
+      </a>
+      <a class="community-badge" href="#">
+        <img class="brand-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@11/icons/discord.svg" alt="Discord" />
+        <div>
+          <div class="cb-top">Join the Discord</div>
+          <div class="cb-bottom">8,201 builders online now</div>
+        </div>
+      </a>
+      <a class="community-badge" href="#">
+        <img class="brand-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@11/icons/x.svg" alt="X" />
+        <div>
+          <div class="cb-top">Follow on X</div>
+          <div class="cb-bottom">build in public, always</div>
+        </div>
+      </a>
+    </section>
+
+    <!-- ====================================================================
+         CLICHÉ 16 — Footer with monospace, generous whitespace, sitemap,
+                     SOC 2 badges, "Made with ✦ in SF"
+         ==================================================================== -->
+    <footer class="footer">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="brand" href="#">
+            <span class="brand-mark">◣</span>
+            <span class="brand-name">synthetica</span>
+          </a>
+          <p class="footer-mission">
+            We're building the AI platform we wish existed when we were
+            shipping at the world's most ambitious teams.
+          </p>
+          <div class="footer-soc2">
+            <span class="soc2-badge">SOC 2 Type II</span>
+            <span class="soc2-badge">HIPAA</span>
+            <span class="soc2-badge">GDPR</span>
+            <span class="soc2-badge">ISO 27001</span>
+          </div>
+        </div>
+        <div class="footer-cols">
+          <div>
+            <h4>Product</h4>
+            <a href="#">Reason</a><a href="#">Retrieve</a><a href="#">Act</a>
+            <a href="#">Eval</a><a href="#">Changelog</a>
+          </div>
+          <div>
+            <h4>Company</h4>
+            <a href="#">About</a><a href="#">Manifesto</a><a href="#">Careers</a>
+            <a href="#">Press kit</a>
+          </div>
+          <div>
+            <h4>Resources</h4>
+            <a href="#">Docs</a><a href="#">API reference</a>
+            <a href="#">Cookbook</a><a href="#">Status</a>
+          </div>
+          <div>
+            <h4>Legal</h4>
+            <a href="#">Terms</a><a href="#">Privacy</a><a href="#">DPA</a>
+            <a href="#">Subprocessors</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Synthetica Labs, Inc.</span>
+        <span>Made with <span class="sparkle">✦</span> and questionable taste in San Francisco.</span>
+      </div>
+    </footer>
+
+    <!-- ====================================================================
+         CLICHÉ 17 — Sticky chat FAB bottom-right that opens a fake chat.
+         ==================================================================== -->
+    <button class="chat-fab" id="chat-fab" aria-label="Ask AI">
+      <span class="sparkle">✦</span>
+      <span>Ask AI</span>
+    </button>
+    <div class="chat-popover" id="chat-popover" hidden>
+      <div class="chat-pop-header">
+        <span class="sparkle">✦</span>
+        <span>Hi! I'm Synthi.</span>
+        <button class="chat-close" id="chat-close" aria-label="Close">×</button>
+      </div>
+      <div class="chat-pop-body">
+        <p class="chat-pop-msg">
+          I'm an AI assistant trained on Synthetica's docs. What can I help you
+          build today?
+        </p>
+        <div class="chat-pop-suggestions">
+          <button>Show me a demo</button>
+          <button>How does pricing work?</button>
+          <button>Compare to ChatGPT</button>
+        </div>
+      </div>
+      <div class="chat-pop-input">
+        <input type="text" placeholder="Ask anything…" />
+        <button class="sparkle">✦</button>
+      </div>
+    </div>
+
+    <!-- particles.js for the node graph background -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+    <!-- Demo modules -->
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>
