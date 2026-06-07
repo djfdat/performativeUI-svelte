@@ -13,7 +13,7 @@ export function Home() {
   return (
     <>
       <StickyBanner>
-        v0 — barely tested, generously typed
+        Now generally available · v0.0.2
       </StickyBanner>
 
       <section className="home-hero">
@@ -28,16 +28,12 @@ export function Home() {
           style={{ position: "absolute", inset: 0, zIndex: 1 }}
         />
         <div style={{ position: "relative", zIndex: 3 }}>
-          <EyebrowPill>{COMPONENTS.length} components, all of them suspicious</EyebrowPill>
+          <EyebrowPill>{COMPONENTS.length} components · MIT licensed</EyebrowPill>
           <h2 style={{ marginTop: 16 }}>
-            <span style={{ display: "block" }}>React components for</span>
+            <span style={{ display: "block" }}>AI-native React components for</span>
             <span
               style={{
                 display: "block",
-                /* Reserve one line of height so typing/deleting the
-                   rotator never bounces the layout below. Long words
-                   that would overflow wrap inside this line instead of
-                   clipping at the hero's overflow:hidden. */
                 minHeight: "1.1em",
                 maxWidth: "100%",
                 overflowWrap: "break-word",
@@ -47,18 +43,17 @@ export function Home() {
                 <Rotator
                   words={[
                     "AI startups",
-                    "founders pretending",
-                    "people who say 'frontier'",
-                    "you, specifically",
+                    "frontier labs",
+                    "the next ChatGPT",
+                    "your moat",
                   ]}
                 />
               </GradientText>
             </span>
           </h2>
           <p className="lede">
-            A component library of the most overused tropes from the AI
-            startup landing-page renaissance. Plug them in. Look ambitious.
-            Maybe even raise.
+            Components that signal how oversubscribed your funding
+            round is.
           </p>
           <div className="home-install">npm install performative-ui</div>
         </div>

@@ -1,9 +1,39 @@
-# performative-ui
+<h1 align="center">performative-ui</h1>
 
-A React component library of the world's most performative AI-startup
-landing-page tropes. Tongue firmly in cheek.
+<p align="center">
+  AI-native React components that signal how oversubscribed your
+  funding round is.
+</p>
 
-**Docs & live demos:** https://vorpus.github.io/performativeUI/
+<p align="center">
+  <a href="https://vorpus.github.io/performativeUI/"><b>Documentation</b></a>
+  ·
+  <a href="https://www.npmjs.com/package/performative-ui"><b>npm</b></a>
+  ·
+  <a href="https://github.com/vorpus/performativeUI"><b>GitHub</b></a>
+</p>
+
+<p align="center">
+  <img alt="build" src="https://img.shields.io/badge/build-passing-brightgreen" />
+  <img alt="npm" src="https://img.shields.io/npm/v/performative-ui?color=cb3837&logo=npm&logoColor=white" />
+  <img alt="bundle" src="https://img.shields.io/badge/bundle-30%20KB-blue" />
+  <img alt="license" src="https://img.shields.io/npm/l/performative-ui" />
+  <img alt="typescript" src="https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white" />
+  <img alt="React" src="https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white" />
+</p>
+
+<p align="center">
+  <img alt="Anthropic" src="https://img.shields.io/badge/Powered_by-Anthropic-D4A27F?logo=anthropic&logoColor=white" />
+  <img alt="Codex" src="https://img.shields.io/badge/Made_with-Codex-412991?logo=openai&logoColor=white" />
+  <img alt="AI-native" src="https://img.shields.io/badge/AI--native-yes-7c3aed?logo=openai&logoColor=white" />
+  <img alt="frontier" src="https://img.shields.io/badge/frontier-ready-ec4899" />
+  <img alt="vibes" src="https://img.shields.io/badge/vibes-immaculate-ff1493" />
+  <img alt="PRs" src="https://img.shields.io/badge/PRs-welcome-brightgreen" />
+  <img alt="love" src="https://img.shields.io/badge/made_with-%E2%9D%A4-red" />
+  <img alt="Hacktoberfest" src="https://img.shields.io/badge/Hacktoberfest-2026-orange" />
+</p>
+
+---
 
 ## Install
 
@@ -11,88 +41,8 @@ landing-page tropes. Tongue firmly in cheek.
 npm install performative-ui
 ```
 
-Then in your entry file:
-
-```ts
-import "performative-ui/styles.css";
-```
-
-## What's in the box
-
-Twenty-four components across nine categories — all themeable via CSS
-custom properties on `:root` and customizable per-instance via props,
-`className`/`style` passthrough, render props, and headless hooks.
-
-- **Atoms** — `Sparkle`, `GradientText`, `StatusDot`
-- **Primitives** — `Button` (polymorphic, four variants), `EyebrowPill`
-- **Banners** — `StickyBanner`
-- **Heroes** — `Rotator` (typewriter), `WordRoll` (vertical slide),
-  `PromptHero` (ChatGPT-box-as-CTA), `AsciiHero` (canvas-rendered
-  ASCII field with cursor spotlight + aurora palette)
-- **Backgrounds** — `Aurora`, `NodeGraphBackground`, `FloatingSparkles`
-- **Surfaces** — `GlassCard` (compound), `MockIDE` (compound, with
-  token-by-token code stream)
-- **Conversation** — `ChatBubble`, `TokenStream`, `ChatFAB` (compound)
-- **Social proof** — `LogoMarquee`, `LogoRow`, `StatCounter`,
-  `CommunityBadge`
-- **Pricing & Conversion** — `PricingCard` (compound), `BeforeAfter`,
-  `WaitlistForm`
-
-Plus four headless hooks for when you want our behavior with your own
-markup: `useTypewriter`, `useCounter`, `useTokenStream`, `useAsciiField`.
-
-## Example
-
-```tsx
-import {
-  Aurora,
-  AsciiHero,
-  GradientText,
-  Rotator,
-  PromptHero,
-} from "performative-ui";
-import "performative-ui/styles.css";
-
-export function Hero() {
-  return (
-    <section style={{ position: "relative", padding: 80, isolation: "isolate" }}>
-      <Aurora />
-      <AsciiHero
-        variant="bare"
-        colorful
-        baseOpacity={0.18}
-        spotlightOpacity={0.9}
-        style={{ position: "absolute", inset: 0, zIndex: 1 }}
-      />
-      <div style={{ position: "relative", zIndex: 2 }}>
-        <h1>
-          AI for{" "}
-          <GradientText>
-            <Rotator words={["doctors", "lawyers", "founders", "everyone"]} />
-          </GradientText>
-        </h1>
-        <PromptHero onSubmit={(text) => console.log(text)} />
-      </div>
-    </section>
-  );
-}
-```
-
-## Theming
-
-Override any of the CSS custom properties on `:root` (or any ancestor)
-to retheme. The full list lives at the top of `dist/performative-ui.css`,
-but the load-bearing ones are:
-
-```css
-:root {
-  --pui-bg:        #08080b;
-  --pui-fg:        #f4f4f6;
-  --pui-grad-from: #7c3aed;
-  --pui-grad-mid:  #ec4899;
-  --pui-grad-to:   #06b6d4;
-}
-```
+Visit **[the documentation](https://vorpus.github.io/performativeUI/)** for the
+full component catalog, live demos, and API reference.
 
 ## License
 
