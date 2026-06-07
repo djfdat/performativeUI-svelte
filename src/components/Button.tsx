@@ -14,8 +14,10 @@ export type ButtonVariant =
   | "shimmer"
   | "ghost"
   | "solid"
-  /** Borderless, no background. The MUI-style "text" / "edit in chat" variant. */
-  | "text";
+  /** Pill with a thicker bottom border that reveals an animated
+   *  rainbow underneath. The MUI "Edit in Chat" treatment, named for
+   *  the wave of color that rides the bottom edge of the pill. */
+  | "wave";
 export type ButtonSize = "sm" | "md" | "lg";
 
 export interface ButtonOwnProps {

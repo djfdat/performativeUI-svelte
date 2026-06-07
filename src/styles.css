@@ -275,32 +275,46 @@ button:hover > .pui-arrow,
 }
 .pui-btn--ghost:hover { background: var(--pui-bg-elev); border-color: #3a3a4e; }
 
-/* Text variant — the MUI "Edit in chat" trick.
-   Continuously animated (not hover-only):
-     - Three-layer multi-gradient background: a solid dark fill clipped
-       to padding-box (covers the interior), a dark fade-to-transparent
-       clipped to border-box (covers everything except a strip at the
-       bottom edge), and a rainbow gradient also clipped to border-box.
-       Together they reveal a thin moving rainbow line at the bottom
-       border edge.
-     - A ::before pseudo-element holds a small blurred horizontal
-       rainbow blob that drifts across the inside of the button.
-     - One keyframe shifts background-position on both, perpetually. */
-.pui-btn--text {
+/* Wave variant — faithful reproduction of MUI's "Edit in Chat" button.
+
+   The recipe (via Web Animations API + getComputedStyle on MUI):
+
+   - Pill (border-radius: 999px) with a real border:
+       1px top/sides, 2px bottom, solid, faint primary-blue at 20% α.
+     The thicker bottom is where the rainbow shows through.
+   - Three background layers, all 200% size, drawn from front to back:
+       1. Solid dark, CLIPPED TO PADDING-BOX → covers the interior
+          (everything except the border ring).
+       2. Vertical fade: opaque dark from top to 80%, transparent at
+          100%, CLIPPED TO BORDER-BOX → covers the whole pill but
+          fades to nothing at the bottom edge.
+       3. Horizontal rainbow, CLIPPED TO BORDER-BOX → only visible
+          where layers 1 + 2 aren't covering, i.e. the bottom border
+          ring, wrapping the curve of the pill.
+   - A ::before holds a blurred (blur(8px)) horizontal rainbow strip
+     that hangs just below the pill — the diffuse glow.
+   - background-position of layer 3 + the ::before animates -100% →
+     100% over 2s / 3s for the rainbow to drift continuously. */
+.pui-btn--wave {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 14px 9px;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  color: #b8c8e6; /* the light primary tint MUI uses */
+  gap: 6px;
+  padding: 6px 14px 7px;
+  border-style: solid;
+  border-width: 1px 1px 2px;
+  border-color: rgba(124, 156, 220, 0.22);
+  border-radius: 999px;
+  color: rgb(180, 200, 235);
+  font-weight: 500;
+  font-size: 13px;
+  background-color: transparent;
   background-image:
     linear-gradient(var(--pui-bg-elev), var(--pui-bg-elev)),
     linear-gradient(
       var(--pui-bg-elev) 50%,
       var(--pui-bg-elev) 80%,
-      rgba(14, 14, 19, 0)
+      rgba(14, 14, 19, 0) 100%
     ),
     linear-gradient(
       90deg,
@@ -312,20 +326,23 @@ button:hover > .pui-arrow,
     );
   background-clip: padding-box, border-box, border-box;
   background-origin: border-box, border-box, border-box;
-  background-size: 200% 200%;
-  animation: pui-text-btn-shift 2s linear infinite;
-  overflow: hidden;
+  background-size: 200%, 200%, 200%;
+  background-repeat: repeat, repeat, repeat;
+  background-position: 0% 50%, 0% 50%, -100% 50%;
+  animation: pui-wave-shift 2s linear infinite;
+  overflow: visible;
   isolation: isolate;
-  transition: color 200ms var(--pui-ease);
+  transition: color 0.12s ease-in, border-color 0.12s ease-in;
 }
-/* Blurred rainbow blob that drifts across the inside. */
-.pui-btn--text::before {
+/* Blurred rainbow halo bleeding outside the bottom edge. */
+.pui-btn--wave::before {
   content: "";
   position: absolute;
-  top: 55%;
-  left: 30%;
-  width: 60px;
+  bottom: -4px;
+  left: 50%;
+  width: 88%;
   height: 5px;
+  transform: translateX(-50%);
   background-image: linear-gradient(
     90deg,
     var(--pui-grad-from),
@@ -335,24 +352,30 @@ button:hover > .pui-arrow,
     var(--pui-grad-from)
   );
   background-size: 200% 100%;
-  animation: pui-text-btn-shift 3s linear infinite;
+  background-repeat: repeat;
+  animation: pui-wave-shift 3s linear infinite;
   filter: blur(8px);
   pointer-events: none;
   z-index: -1;
 }
-.pui-btn--text:hover {
-  color: var(--pui-fg);
+.pui-btn--wave:hover {
+  color: rgb(210, 225, 245);
+  border-color: rgba(124, 156, 220, 0.35);
 }
-.pui-btn--text:disabled,
-.pui-btn--text[aria-busy="true"] {
+.pui-btn--wave:disabled,
+.pui-btn--wave[aria-busy="true"] {
   color: var(--pui-fg-mute);
+  border-color: var(--pui-border);
   animation: none;
 }
-.pui-btn--text:disabled::before { display: none; }
+.pui-btn--wave:disabled::before { display: none; }
 
-@keyframes pui-text-btn-shift {
-  from { background-position: 0% 50%; }
-  to   { background-position: -200% 50%; }
+/* Animate only the rainbow layer's bg-position (layer 3). The dark
+   layers stay put — they're solid/fading and a position shift on
+   them would be invisible anyway. */
+@keyframes pui-wave-shift {
+  from { background-position: 0% 50%, 0% 50%, -100% 50%; }
+  to   { background-position: 0% 50%, 0% 50%,  100% 50%; }
 }
 
 .pui-btn--glow {
