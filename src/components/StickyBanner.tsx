@@ -2,7 +2,7 @@ import { forwardRef, type ComponentPropsWithoutRef, type ReactNode } from "react
 import { cn } from "../utils/cn";
 import { Sparkle } from "./Sparkle";
 
-export interface TopPillProps extends ComponentPropsWithoutRef<"div"> {
+export interface StickyBannerProps extends ComponentPropsWithoutRef<"div"> {
   /** Hide the leading sparkle. */
   hideSparkle?: boolean;
   /** Optional trailing accessory (e.g. an arrow). */
@@ -13,13 +13,13 @@ export interface TopPillProps extends ComponentPropsWithoutRef<"div"> {
  * The sticky announcement bar. Houses funding news, beta tags, and
  * whatever else hasn't shipped yet.
  */
-export const TopPill = forwardRef<HTMLDivElement, TopPillProps>(
+export const StickyBanner = forwardRef<HTMLDivElement, StickyBannerProps>(
   ({ hideSparkle, trailing, className, children, ...rest }, ref) => (
-    <div ref={ref} className={cn("pui-top-pill", className)} {...rest}>
+    <div ref={ref} className={cn("pui-sticky-banner", className)} {...rest}>
       {!hideSparkle && <Sparkle />}
       <span>{children}</span>
       {trailing}
     </div>
   ),
 );
-TopPill.displayName = "TopPill";
+StickyBanner.displayName = "StickyBanner";

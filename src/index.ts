@@ -18,11 +18,12 @@ export {
   type ButtonVariant,
   type ButtonSize,
 } from "./components/Button";
-export { TopPill, type TopPillProps } from "./components/TopPill";
+export { StickyBanner, type StickyBannerProps } from "./components/StickyBanner";
 export { EyebrowPill, type EyebrowPillProps } from "./components/EyebrowPill";
 
 // Heroes
 export { Rotator, type RotatorProps } from "./components/Rotator";
+export { WordRoll, type WordRollProps } from "./components/WordRoll";
 export { PromptHero, type PromptHeroProps } from "./components/PromptHero";
 export { AsciiHero, type AsciiHeroProps } from "./components/AsciiHero";
 

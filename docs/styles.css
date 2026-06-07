@@ -274,10 +274,10 @@ a { color: inherit; }
   overflow: hidden;
   isolation: isolate;
 }
-.home-hero h1 {
-  font-size: clamp(40px, 6vw, 72px);
-  line-height: 1.04;
-  letter-spacing: -0.035em;
+.home-hero h2 {
+  font-size: clamp(28px, 4vw, 46px);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
   font-weight: 700;
   margin: 0 0 16px;
 }

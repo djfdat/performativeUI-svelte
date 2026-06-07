@@ -11,7 +11,11 @@ export interface RotatorProps
     UseTypewriterOptions {
   /** Hide the blinking cursor. */
   hideCursor?: boolean;
-  /** Cursor character. Default ▍. */
+  /**
+   * Cursor character. If omitted, renders a CSS-drawn block that aligns
+   * to the text baseline (terminal-style). Pass a string (e.g. "|") to
+   * use a custom glyph instead.
+   */
   cursor?: string;
   /** Custom renderer for the in-progress word. Compose your own treatment. */
   renderWord?: (word: string, index: number) => ReactNode;
@@ -35,7 +39,7 @@ export const Rotator = forwardRef<HTMLSpanElement, RotatorProps>(
       loop,
       onWordReached,
       hideCursor,
-      cursor = "▍",
+      cursor,
       renderWord,
       className,
       ...rest
@@ -54,7 +58,14 @@ export const Rotator = forwardRef<HTMLSpanElement, RotatorProps>(
       <span ref={ref} className={cn("pui-rotator", className)} {...rest}>
         {renderWord ? renderWord(word, index) : word}
         {!hideCursor && (
-          <span className="pui-rotator__cursor pui-rotator__cursor--blink">
+          <span
+            aria-hidden="true"
+            className={cn(
+              "pui-rotator__cursor",
+              cursor === undefined && "pui-rotator__cursor--block",
+              "pui-rotator__cursor--blink",
+            )}
+          >
             {cursor}
           </span>
         )}

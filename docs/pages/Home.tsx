@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import {
+  AsciiHero,
   Aurora,
-  FloatingSparkles,
   GradientText,
   Rotator,
-  TopPill,
+  StickyBanner,
   EyebrowPill,
 } from "performative-ui";
 import { COMPONENTS, CATEGORIES } from "../lib/meta";
@@ -12,28 +12,49 @@ import { COMPONENTS, CATEGORIES } from "../lib/meta";
 export function Home() {
   return (
     <>
-      <TopPill>
+      <StickyBanner>
         v0 — barely tested, generously typed
-      </TopPill>
+      </StickyBanner>
 
       <section className="home-hero">
         <Aurora />
-        <FloatingSparkles count={14} />
+        <AsciiHero
+          variant="bare"
+          colorful
+          baseOpacity={0.18}
+          spotlightOpacity={0.9}
+          spotlightRadius={10}
+          fontSize={11}
+          style={{ position: "absolute", inset: 0, zIndex: 1 }}
+        />
         <div style={{ position: "relative", zIndex: 3 }}>
           <EyebrowPill>{COMPONENTS.length} components, all of them suspicious</EyebrowPill>
-          <h1 style={{ marginTop: 16 }}>
-            React components for{" "}
-            <GradientText>
-              <Rotator
-                words={[
-                  "AI startups",
-                  "founders pretending",
-                  "people who say 'frontier'",
-                  "you, specifically",
-                ]}
-              />
-            </GradientText>
-          </h1>
+          <h2 style={{ marginTop: 16 }}>
+            <span style={{ display: "block" }}>React components for</span>
+            <span
+              style={{
+                display: "block",
+                /* Reserve one line of height so typing/deleting the
+                   rotator never bounces the layout below. Long words
+                   that would overflow wrap inside this line instead of
+                   clipping at the hero's overflow:hidden. */
+                minHeight: "1.1em",
+                maxWidth: "100%",
+                overflowWrap: "break-word",
+              }}
+            >
+              <GradientText>
+                <Rotator
+                  words={[
+                    "AI startups",
+                    "founders pretending",
+                    "people who say 'frontier'",
+                    "you, specifically",
+                  ]}
+                />
+              </GradientText>
+            </span>
+          </h2>
           <p className="lede">
             A component library of the most overused tropes from the AI
             startup landing-page renaissance. Plug them in. Look ambitious.

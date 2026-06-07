@@ -1,5 +1,5 @@
 import type { ComponentType, ReactNode } from "react";
-import { Attribution, type Source } from "./Attribution";
+import { type Source } from "./Attribution";
 import { CodeBlock } from "./CodeBlock";
 import { PropsTable, type PropSpec } from "./PropsTable";
 
@@ -36,7 +36,6 @@ export function ComponentPage({ meta }: { meta: ComponentMeta }) {
         </div>
         <h1 className="cp-title">{meta.name}</h1>
         <p className="cp-snark">{meta.snark}</p>
-        <Attribution sources={meta.sources} extra={meta.extra} />
       </header>
 
       <section className="cp-section">

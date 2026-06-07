@@ -1,4 +1,8 @@
-import { forwardRef, useRef, type ComponentPropsWithoutRef } from "react";
+import {
+  forwardRef,
+  useRef,
+  type ComponentPropsWithoutRef,
+} from "react";
 import { cn } from "../utils/cn";
 import {
   useAsciiField,
@@ -6,44 +10,92 @@ import {
 } from "../hooks/useAsciiField";
 
 export interface AsciiHeroProps
-  extends ComponentPropsWithoutRef<"pre">,
-    UseAsciiFieldOptions {}
+  extends ComponentPropsWithoutRef<"div">,
+    UseAsciiFieldOptions {
+  /**
+   * Visual treatment:
+   *   - "panel" (default): bordered card with backdrop. Use as a hero.
+   *   - "bare": no chrome. Use as a background layer (`position: absolute; inset: 0`).
+   */
+  variant?: "panel" | "bare";
+}
 
 /**
- * A mouse-reactive ASCII field. Signals "for hackers, by people who follow
- * the right newsletters." Drop in unstyled — defaults are loud.
+ * A canvas-rendered ASCII field that reacts to the cursor. Drop it into
+ * a hero as a chrome'd panel, or absolutely-position the `bare` variant
+ * behind your content to use it as a background.
  *
- *     <AsciiHero cols={84} rows={24} reactive />
+ *     <AsciiHero />                                       // panel
+ *     <AsciiHero variant="bare" colorful baseOpacity={0.18}
+ *       spotlightOpacity={0.9} spotlightRadius={10} />    // background
  *
- * For headless use, call `useAsciiField()` on your own <pre> ref.
+ * For full control over markup, drop the component and call
+ * `useAsciiField(canvasRef, hostRef, options)` against your own DOM.
  */
-export const AsciiHero = forwardRef<HTMLPreElement, AsciiHeroProps>(
+export const AsciiHero = forwardRef<HTMLDivElement, AsciiHeroProps>(
   (
     {
+      variant = "panel",
       cols,
       rows,
+      fontSize,
+      fontFamily,
       charRamp,
+      colorful,
+      palette,
+      baseOpacity,
+      reactive,
       rippleStrength,
       rippleRadius,
-      reactive,
+      spotlightOpacity,
+      spotlightRadius,
       frameMs,
       className,
       ...rest
     },
     ref,
   ) => {
-    const localRef = useRef<HTMLPreElement>(null);
-    const refToUse = (ref as React.RefObject<HTMLPreElement>) ?? localRef;
-    useAsciiField(refToUse, {
+    const hostRef = useRef<HTMLDivElement>(null);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+
+    useAsciiField(canvasRef, hostRef, {
       cols,
       rows,
+      fontSize,
+      fontFamily,
       charRamp,
+      colorful,
+      palette,
+      baseOpacity,
+      reactive,
       rippleStrength,
       rippleRadius,
-      reactive,
+      spotlightOpacity,
+      spotlightRadius,
       frameMs,
     });
-    return <pre ref={refToUse} className={cn("pui-ascii", className)} {...rest} />;
+
+    const setRef = (el: HTMLDivElement | null) => {
+      hostRef.current = el;
+      if (typeof ref === "function") ref(el);
+      else if (ref)
+        (ref as React.MutableRefObject<HTMLDivElement | null>).current = el;
+    };
+
+    return (
+      <div
+        ref={setRef}
+        className={cn(
+          "pui-ascii",
+          variant === "panel" && "pui-ascii--panel",
+          className,
+        )}
+        aria-hidden="true"
+        {...rest}
+      >
+        <canvas ref={canvasRef} />
+      </div>
+    );
   },
 );
 AsciiHero.displayName = "AsciiHero";

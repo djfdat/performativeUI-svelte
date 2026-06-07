@@ -3,9 +3,10 @@ import {
   GradientText,
   StatusDot,
   Button,
-  TopPill,
+  StickyBanner,
   EyebrowPill,
   Rotator,
+  WordRoll,
   PromptHero,
   AsciiHero,
   Aurora,
@@ -253,9 +254,9 @@ export const COMPONENTS: ComponentMeta[] = [
   },
 
   {
-    slug: "top-pill",
-    category: "Primitives",
-    name: "TopPill",
+    slug: "sticky-banner",
+    category: "Banners",
+    name: "StickyBanner",
     snark: "Funding news disguised as utility.",
     sources: [
       { name: "granola.ai", url: "https://www.granola.ai" },
@@ -270,13 +271,13 @@ export const COMPONENTS: ComponentMeta[] = [
         title: "Funding bar",
         stretch: true,
         Demo: () => (
-          <TopPill trailing={<span className="pui-arrow">→</span>}>
+          <StickyBanner trailing={<span className="pui-arrow">→</span>}>
             Backed by Y Combinator (W26) — we just raised our seed
-          </TopPill>
+          </StickyBanner>
         ),
-        code: `<TopPill trailing="→">
+        code: `<StickyBanner trailing="→">
   Backed by Y Combinator (W26) — we just raised our seed
-</TopPill>`,
+</StickyBanner>`,
       },
     ],
     props: [
@@ -401,6 +402,68 @@ export const COMPONENTS: ComponentMeta[] = [
   },
 
   {
+    slug: "word-roll",
+    category: "Heroes",
+    name: "WordRoll",
+    snark: "All the breadth-flexing of a Rotator, without making the visitor wait for it to type.",
+    sources: [
+      { name: "supermemory.ai", url: "https://supermemory.ai" },
+      { name: "linear.app", url: "https://linear.app" },
+    ],
+    extra: 40,
+    description:
+      "Vertical slide-roll cousin of Rotator. The active word slides in, the previous one slides out — no typing, no cursor. Pass `gradient` to get the AI-pink treatment per-word (don't nest inside `<GradientText>` — background-clip:text doesn't apply to the absolutely-positioned rolling words).",
+    examples: [
+      {
+        title: "Default (roll up)",
+        Demo: () => (
+          <h2 style={{ fontSize: 40, margin: 0, fontWeight: 700 }}>
+            AI for{" "}
+            <WordRoll
+              words={["doctors", "lawyers", "founders", "everyone"]}
+              gradient
+            />
+          </h2>
+        ),
+        code: `<h2>
+  AI for{" "}
+  <WordRoll
+    words={["doctors", "lawyers", "founders", "everyone"]}
+    gradient
+  />
+</h2>`,
+      },
+      {
+        title: "Roll down + slower",
+        Demo: () => (
+          <h2 style={{ fontSize: 32, margin: 0 }}>
+            Built for{" "}
+            <WordRoll
+              words={["builders", "founders", "tinkerers"]}
+              direction="down"
+              intervalMs={3000}
+              transitionMs={700}
+            />
+          </h2>
+        ),
+        code: `<WordRoll
+  words={["builders", "founders", "tinkerers"]}
+  direction="down"
+  intervalMs={3000}
+  transitionMs={700}
+/>`,
+      },
+    ],
+    props: [
+      { name: "words", type: "string[]", required: true, desc: "Words to cycle through." },
+      { name: "intervalMs", type: "number", default: "2200", desc: "ms each word holds before rolling out." },
+      { name: "transitionMs", type: "number", default: "500", desc: "ms of the slide animation itself." },
+      { name: "direction", type: '"up" | "down"', default: '"up"', desc: "Direction the active word rolls in from." },
+      { name: "gradient", type: "boolean", desc: "Paint each word with the AI gradient. Use instead of nesting in <GradientText>." },
+    ],
+  },
+
+  {
     slug: "prompt-hero",
     category: "Heroes",
     name: "PromptHero",
@@ -465,36 +528,109 @@ export const COMPONENTS: ComponentMeta[] = [
     ],
     extra: 25,
     description:
-      "A procedural ASCII field that ripples around the cursor. Pure 2D math — no shaders, no three.js. Cols/rows control resolution; `charRamp` controls visual density. For deeper customization, drop the component and call `useAsciiField()` against your own <pre>.",
+      "A canvas-rendered procedural ASCII field that reacts to the cursor. The grid auto-fits its container. Two visual modes: `panel` (default, bordered card) and `bare` (no chrome, intended for background use). Flip on `colorful` for the aurora palette and `spotlightOpacity` to brighten the area under the cursor — perfect for low-opacity backgrounds where the user gets rewarded for hovering.",
     examples: [
       {
-        title: "Default",
+        title: "Default panel",
         stretch: true,
         Demo: () => (
-          <div style={{ padding: 24, textAlign: "center" }}>
+          <div style={{ padding: 24 }}>
             <AsciiHero />
           </div>
         ),
         code: `<AsciiHero />`,
       },
       {
-        title: "Smaller + custom ramp",
+        title: "Colorful (aurora palette)",
         stretch: true,
         Demo: () => (
-          <div style={{ padding: 24, textAlign: "center" }}>
-            <AsciiHero cols={50} rows={14} charRamp=" .:-=+*#%@" />
+          <div style={{ padding: 24 }}>
+            <AsciiHero colorful />
           </div>
         ),
-        code: `<AsciiHero cols={50} rows={14} charRamp=" .:-=+*#%@" />`,
+        code: `<AsciiHero colorful />`,
+      },
+      {
+        title: "As a hero background (low opacity + cursor spotlight)",
+        stretch: true,
+        Demo: () => (
+          <div
+            style={{
+              position: "relative",
+              minHeight: 280,
+              padding: 36,
+              overflow: "hidden",
+              background: "#08080b",
+            }}
+          >
+            <AsciiHero
+              variant="bare"
+              colorful
+              baseOpacity={0.18}
+              spotlightOpacity={0.9}
+              spotlightRadius={10}
+              style={{ position: "absolute", inset: 0 }}
+            />
+            <div
+              style={{
+                position: "relative",
+                zIndex: 1,
+                textAlign: "center",
+                color: "var(--pui-fg)",
+              }}
+            >
+              <h3 style={{ fontSize: 28, margin: "0 0 8px" }}>
+                Hover this card.
+              </h3>
+              <p style={{ margin: 0, color: "var(--pui-fg-dim)" }}>
+                The field stays dim until your cursor lights it up.
+              </p>
+            </div>
+          </div>
+        ),
+        code: `<div style={{ position: "relative" }}>
+  <AsciiHero
+    variant="bare"
+    colorful
+    baseOpacity={0.18}
+    spotlightOpacity={0.9}
+    spotlightRadius={10}
+    style={{ position: "absolute", inset: 0 }}
+  />
+  <div style={{ position: "relative", zIndex: 1 }}>…content…</div>
+</div>`,
+      },
+      {
+        title: "Custom palette + ramp",
+        stretch: true,
+        Demo: () => (
+          <div style={{ padding: 24 }}>
+            <AsciiHero
+              palette={["#22c55e", "#86efac", "#fbbf24"]}
+              charRamp=" .:-=+*#%@"
+            />
+          </div>
+        ),
+        code: `<AsciiHero
+  palette={["#22c55e", "#86efac", "#fbbf24"]}
+  charRamp=" .:-=+*#%@"
+/>`,
       },
     ],
     props: [
-      { name: "cols", type: "number", default: "78", desc: "Grid width in characters." },
-      { name: "rows", type: "number", default: "22", desc: "Grid height in lines." },
-      { name: "charRamp", type: "string", default: '" .`\\\'\\",:;Il…"', desc: "Sparsest → densest characters." },
-      { name: "reactive", type: "boolean", default: "true", desc: "Enable cursor ripple." },
-      { name: "rippleStrength", type: "number", default: "1.4", desc: "Cursor ripple amplitude." },
+      { name: "variant", type: '"panel" | "bare"', default: '"panel"', desc: "panel = bordered card; bare = no chrome (for background use)." },
+      { name: "cols", type: "number", desc: "Grid width in cells. Auto-computed from container if omitted." },
+      { name: "rows", type: "number", desc: "Grid height in cells. Auto-computed from container if omitted." },
+      { name: "fontSize", type: "number", default: "11", desc: "Character font size (px)." },
+      { name: "charRamp", type: "string", desc: "Sparsest → densest characters." },
+      { name: "colorful", type: "boolean", desc: "Paint with the default aurora palette." },
+      { name: "palette", type: "string[]", desc: "Custom palette; overrides `colorful`." },
+      { name: "baseOpacity", type: "number", default: "1", desc: "Base alpha. Drop low (≈ 0.18) for background use." },
+      { name: "reactive", type: "boolean", default: "true", desc: "Enable cursor reactivity." },
+      { name: "rippleStrength", type: "number", default: "1.4", desc: "Cursor ripple amplitude (changes which chars show)." },
       { name: "rippleRadius", type: "number", default: "6", desc: "Cursor ripple falloff radius (cells)." },
+      { name: "spotlightOpacity", type: "number", desc: "Alpha at the cursor center; falls off radially to baseOpacity." },
+      { name: "spotlightRadius", type: "number", default: "8", desc: "Cursor spotlight radius (cells)." },
       { name: "frameMs", type: "number", default: "50", desc: "Frame throttle (ms)." },
     ],
   },
@@ -1169,7 +1305,7 @@ export const COMPONENTS: ComponentMeta[] = [
       {
         title: "Three tiers",
         Demo: () => (
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 14, width: "100%", alignItems: "start" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 14, width: "100%" }}>
             <PricingCard>
               <PricingCard.Tier>Hobby</PricingCard.Tier>
               <PricingCard.Amount unit="/mo">$0</PricingCard.Amount>

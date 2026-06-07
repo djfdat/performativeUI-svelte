@@ -167,11 +167,72 @@ button:hover > .pui-arrow,
 .pui-rotator__cursor {
   display: inline-block;
   margin-left: 2px;
+  /* Override `color` so we're not bitten by GradientText (which sets
+     color: transparent on its children). Consumers can still recolor
+     via `.pui-rotator__cursor { color: … }` overrides. */
+  color: var(--pui-fg);
   -webkit-text-fill-color: currentColor;
-  color: currentColor;
   background: none;
 }
+/* CSS-drawn cursor — a rectangle aligned to the text baseline, the
+   way a terminal renders it. Used when no `cursor` glyph is passed. */
+.pui-rotator__cursor--block {
+  width: 0.55em;
+  height: 1.05em;
+  background: currentColor;
+  vertical-align: -0.18em;
+  border-radius: 1px;
+}
 .pui-rotator__cursor--blink { animation: pui-caret 1.05s steps(2,start) infinite; }
+
+/* =============================================================
+   Component: WordRoll (vertical slide-roll cousin of Rotator)
+   ============================================================= */
+.pui-roll {
+  display: inline-block;
+  position: relative;
+  /* clip-path instead of overflow:hidden because overflow:hidden on
+     an inline-block snaps its baseline to the bottom margin edge —
+     which makes the rolling word sit below the line of surrounding
+     text. clip-path keeps the natural inline-block baseline. */
+  clip-path: inset(0);
+}
+.pui-roll__sizer {
+  display: inline-block;
+  visibility: hidden;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.pui-roll__word {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  transform: translateY(100%);
+  opacity: 0;
+  transition:
+    transform var(--pui-roll-ms, 500ms) var(--pui-ease),
+    opacity   var(--pui-roll-ms, 500ms) var(--pui-ease);
+}
+.pui-roll__word--active { transform: translateY(0);     opacity: 1; }
+.pui-roll__word--past   { transform: translateY(-100%); opacity: 0; }
+
+.pui-roll--down .pui-roll__word         { transform: translateY(-100%); }
+.pui-roll--down .pui-roll__word--active { transform: translateY(0); }
+.pui-roll--down .pui-roll__word--past   { transform: translateY(100%); }
+
+/* Gradient prop: paint each rolling word with the AI gradient
+   directly. Nesting in <GradientText> doesn't work for absolutely-
+   positioned children — this is the supported pattern. */
+.pui-roll--gradient .pui-roll__word {
+  background: var(--pui-grad);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  animation: pui-grad-shift 8s ease infinite;
+}
 
 /* =============================================================
    Component: Button
@@ -264,9 +325,9 @@ button:hover > .pui-arrow,
 }
 
 /* =============================================================
-   Component: TopPill
+   Component: StickyBanner
    ============================================================= */
-.pui-top-pill {
+.pui-sticky-banner {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -340,23 +401,30 @@ button:hover > .pui-arrow,
 }
 
 /* =============================================================
-   Component: AsciiHero
+   Component: AsciiHero (canvas-rendered)
    ============================================================= */
 .pui-ascii {
-  display: inline-block;
-  font-family: var(--pui-font-mono);
-  font-size: 11px;
-  line-height: 1.05;
-  color: #c8c8d4;
-  white-space: pre;
+  display: block;
+  position: relative;
   user-select: none;
-  cursor: crosshair;
-  padding: 18px 24px;
+}
+.pui-ascii > canvas {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.pui-ascii--panel {
   border: 1px solid var(--pui-border);
   border-radius: var(--pui-radius);
   background: linear-gradient(180deg, rgba(20,20,28,0.6), rgba(8,8,11,0.6));
   box-shadow: 0 0 60px rgba(124,58,237,0.15);
-  margin: 0;
+  cursor: crosshair;
+  width: min(720px, 100%);
+  min-height: 280px;
+  margin: 0 auto;
+  overflow: hidden;
 }
 
 /* =============================================================
@@ -680,6 +748,9 @@ button:hover > .pui-arrow,
    ============================================================= */
 .pui-price {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   padding: 30px 28px;
   border-radius: var(--pui-radius-xl);
   border: 1px solid var(--pui-border-bright);
@@ -739,6 +810,9 @@ button:hover > .pui-arrow,
   list-style: none;
   padding: 0;
   margin: 0 0 24px;
+  /* Grow to fill, so the CTA sits at the bottom and aligns
+     vertically across cards of varying feature counts. */
+  flex: 1;
 }
 .pui-price__features li {
   padding: 9px 0;
