@@ -307,15 +307,13 @@ a { color: inherit; }
   margin-right: 6px;
 }
 
-/* Row holding the GitHub Star iframe. */
+/* Row holding the GitHub Star iframe. buttons.js replaces the anchor
+   with an iframe sized exactly to its content, so we just inline-center
+   it via text-align (not flex — flex stretches the row to full width
+   and the iframe's visual center stays off-page-center). */
 .home-cta-row {
   margin-top: 14px;
-  display: flex;
-  justify-content: center;
-}
-.home-github-iframe {
-  border: 0;
-  /* the iframe content is light-themed; nothing else to style */
+  text-align: center;
 }
 
 .home-grid {

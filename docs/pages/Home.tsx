@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   AsciiHero,
@@ -9,7 +10,23 @@ import {
 } from "performative-ui";
 import { COMPONENTS, CATEGORIES } from "../lib/meta";
 
+// Dynamically loads buttons.github.io AFTER React has mounted the
+// .github-button anchor — without this, the script's load-time DOM
+// scan misses our React-rendered button.
+function useGithubButtonScript() {
+  useEffect(() => {
+    if (document.querySelector('script[src*="buttons.github.io/buttons.js"]')) {
+      return;
+    }
+    const s = document.createElement("script");
+    s.async = true;
+    s.src = "https://buttons.github.io/buttons.js";
+    document.body.appendChild(s);
+  }, []);
+}
+
 export function Home() {
+  useGithubButtonScript();
   return (
     <>
       <StickyBanner>
@@ -57,18 +74,16 @@ export function Home() {
           </p>
           <div className="home-install">npm install performative-ui</div>
           <div className="home-cta-row">
-            {/* This is the iframe the buttons.github.io script renders
-                under the hood. Using it directly so it shows up even
-                though React renders this anchor after the page-load scan. */}
-            <iframe
-              className="home-github-iframe"
-              src="https://ghbtns.com/github-btn.html?user=vorpus&repo=performativeUI&type=star&count=true&size=large"
-              title="Star vorpus/performativeUI on GitHub"
-              frameBorder="0"
-              scrolling="no"
-              width="170"
-              height="30"
-            />
+            <a
+              className="github-button"
+              href="https://github.com/vorpus/performativeUI"
+              data-icon="octicon-star"
+              data-size="large"
+              data-show-count="true"
+              aria-label="Star vorpus/performativeUI on GitHub"
+            >
+              Star
+            </a>
           </div>
         </div>
       </section>
