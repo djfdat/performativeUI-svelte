@@ -124,12 +124,24 @@
 
 /* =============================================================
    Atom: GradientText
+   -------------------------------------------------------------
+   iOS Safari (< 16.4 in particular) needs both `color: transparent`
+   AND `-webkit-text-fill-color: transparent` for background-clip: text
+   to hold up under React-driven text updates (e.g. the typewriter
+   Rotator inside a GradientText). Without the webkit one, dynamic
+   text can render as fully invisible.
+
+   Forcing `display: inline-block` for the same reason — text-clipping
+   on a plain inline element with inline-block descendants is fragile
+   on iOS.
    ============================================================= */
 .pui-gradient-text {
+  display: inline-block;
   background: var(--pui-grad);
   background-size: 200% 200%;
   -webkit-background-clip: text;
           background-clip: text;
+  -webkit-text-fill-color: transparent;
   color: transparent;
 }
 .pui-gradient-text--animate { animation: pui-grad-shift 8s ease infinite; }
