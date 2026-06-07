@@ -56,6 +56,20 @@ export function Home() {
             round is.
           </p>
           <div className="home-install">npm install performative-ui</div>
+          <div className="home-cta-row">
+            {/* This is the iframe the buttons.github.io script renders
+                under the hood. Using it directly so it shows up even
+                though React renders this anchor after the page-load scan. */}
+            <iframe
+              className="home-github-iframe"
+              src="https://ghbtns.com/github-btn.html?user=vorpus&repo=performativeUI&type=star&count=true&size=large"
+              title="Star vorpus/performativeUI on GitHub"
+              frameBorder="0"
+              scrolling="no"
+              width="170"
+              height="30"
+            />
+          </div>
         </div>
       </section>
 
