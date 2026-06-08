@@ -52,6 +52,105 @@
 
   /* Motion. */
   --pui-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* ----- Theme-aware surface tokens ----- */
+  /* Glass surfaces (translucent panels, ai-chat boxes, popovers). */
+  --pui-glass:           rgba(15, 15, 22, 0.85);
+  --pui-glass-deep:      rgba(15, 15, 22, 0.78);
+  --pui-glass-soft:      rgba(15, 15, 22, 0.55);
+
+  /* Subtle overlay tones — used by card bg, button hover, etc. */
+  --pui-overlay:         rgba(255, 255, 255, 0.04);
+  --pui-overlay-strong:  rgba(255, 255, 255, 0.07);
+  --pui-overlay-bright:  rgba(255, 255, 255, 0.12);
+
+  /* The dark "raised surface" gradient that glow/shimmer buttons,
+     ChatFAB, and similar dark UI elements use. */
+  --pui-button-dark-fill:         linear-gradient(180deg, #1a1a26, #0e0e16);
+  --pui-button-dark-popover-fill: linear-gradient(180deg, #11111a, #0a0a12);
+  --pui-button-dark-border:       rgba(255, 255, 255, 0.08);
+
+  /* Chat user bubble gradient. */
+  --pui-bubble-user-fill: linear-gradient(135deg, #1a1a26, #11111a);
+
+  /* AsciiHero panel backdrop gradient. */
+  --pui-ascii-panel-fill: linear-gradient(180deg,
+                            rgba(20, 20, 28, 0.6),
+                            rgba(8, 8, 11, 0.6));
+
+  /* Drop shadows. */
+  --pui-shadow-card: 0 10px 40px rgba(0, 0, 0, 0.55);
+  --pui-shadow-deep: 0 30px 80px rgba(0, 0, 0, 0.55);
+  --pui-shadow-fab:  0 10px 40px rgba(0, 0, 0, 0.55);
+
+  /* Demo dot-grid color (used by docs example panels). */
+  --pui-grid-dot:    rgba(255, 255, 255, 0.025);
+
+  /* Logo treatment for LogoMarquee / LogoRow / CommunityBadge.
+     simple-icons SVGs are black-on-transparent. In dark mode we
+     invert them to render light-gray; in light mode we drop the
+     invert so they stay dark and visible on white. */
+  --pui-logo-filter:       invert(92%) grayscale(100%) brightness(0.85);
+  --pui-logo-filter-hover: invert(100%);
+  --pui-logo-text:         rgba(255, 255, 255, 0.55);
+  --pui-logo-text-strong:  rgba(255, 255, 255, 0.7);
+}
+
+/* =============================================================
+   LIGHT THEME overrides. Activate with [data-theme="light"]
+   on any ancestor (typically <html>). Same token names, just
+   re-mapped to light values.
+   ============================================================= */
+[data-theme="light"] {
+  --pui-bg:           #ffffff;
+  --pui-bg-elev:      #f7f7fa;
+  --pui-bg-soft:      #ededf2;
+  --pui-border:       #e6e6ec;
+  --pui-border-bright:#d2d2da;
+  --pui-fg:           #0b0b10;
+  --pui-fg-dim:       #4a4a55;
+  --pui-fg-mute:      #88889a;
+
+  /* Glow toned down for light bg (the dark values were tuned to
+     pop against near-black). */
+  --pui-glow:        0 0 24px rgba(124, 58, 237, 0.18);
+  --pui-glow-strong: 0 0 48px rgba(124, 58, 237, 0.22),
+                     0 0 96px rgba(236, 72, 153, 0.12);
+
+  /* Surfaces flip to white/near-white. */
+  --pui-glass:           rgba(255, 255, 255, 0.85);
+  --pui-glass-deep:      rgba(255, 255, 255, 0.78);
+  --pui-glass-soft:      rgba(255, 255, 255, 0.6);
+
+  /* Overlay tones flip from white-on-dark to black-on-white. */
+  --pui-overlay:         rgba(0, 0, 0, 0.04);
+  --pui-overlay-strong:  rgba(0, 0, 0, 0.06);
+  --pui-overlay-bright:  rgba(0, 0, 0, 0.10);
+
+  /* "Dark raised surface" actually becomes a light raised surface. */
+  --pui-button-dark-fill:         linear-gradient(180deg, #ffffff, #f4f4f8);
+  --pui-button-dark-popover-fill: linear-gradient(180deg, #ffffff, #f0f0f5);
+  --pui-button-dark-border:       rgba(0, 0, 0, 0.12);
+
+  --pui-bubble-user-fill: linear-gradient(135deg, #f6f6fa, #e8e8ee);
+
+  --pui-ascii-panel-fill: linear-gradient(180deg,
+                            rgba(247, 247, 250, 0.6),
+                            rgba(255, 255, 255, 0.4));
+
+  /* Drop shadows much lighter on white bg. */
+  --pui-shadow-card: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --pui-shadow-deep: 0 20px 50px rgba(0, 0, 0, 0.10);
+  --pui-shadow-fab:  0 10px 30px rgba(0, 0, 0, 0.12);
+
+  --pui-grid-dot:    rgba(0, 0, 0, 0.045);
+
+  /* Logos: no invert in light mode (they're already black SVGs);
+     fade slightly so they read as muted brand marks. */
+  --pui-logo-filter:       grayscale(100%) brightness(0.6);
+  --pui-logo-filter-hover: none;
+  --pui-logo-text:         rgba(0, 0, 0, 0.65);
+  --pui-logo-text-strong:  rgba(0, 0, 0, 0.8);
 }
 
 /* =============================================================
@@ -393,8 +492,8 @@ button:hover > .pui-arrow,
 .pui-btn--glow {
   position: relative;
   color: var(--pui-fg);
-  background: linear-gradient(180deg,#1a1a26,#0e0e16);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: var(--pui-button-dark-fill);
+  border: 1px solid var(--pui-button-dark-border);
   box-shadow: var(--pui-glow);
 }
 .pui-btn--glow::before {
@@ -411,7 +510,7 @@ button:hover > .pui-arrow,
 .pui-btn--glow:hover { box-shadow: var(--pui-glow-strong); }
 
 .pui-btn--shimmer {
-  background: linear-gradient(180deg,#1a1a26,#0e0e16);
+  background: var(--pui-button-dark-fill);
   color: var(--pui-fg);
   border: 1px solid var(--pui-border-bright);
   overflow: hidden;
@@ -471,7 +570,7 @@ button:hover > .pui-arrow,
   font-family: var(--pui-font-sans);
   font-size: 13px;
   color: var(--pui-fg-dim);
-  background: rgba(20,20,28,0.6);
+  background: var(--pui-glass-soft);
   backdrop-filter: blur(6px);
 }
 
@@ -537,7 +636,7 @@ button:hover > .pui-arrow,
 .pui-ascii--panel {
   border: 1px solid var(--pui-border);
   border-radius: var(--pui-radius);
-  background: linear-gradient(180deg, rgba(20,20,28,0.6), rgba(8,8,11,0.6));
+  background: var(--pui-ascii-panel-fill);
   box-shadow: 0 0 60px rgba(124,58,237,0.15);
   cursor: crosshair;
   width: min(720px, 100%);
@@ -555,10 +654,10 @@ button:hover > .pui-arrow,
   gap: 8px;
   width: 100%;
   padding: 8px 8px 8px 18px;
-  background: rgba(15,15,22,0.78);
+  background: var(--pui-glass-deep);
   border: 1px solid var(--pui-border-bright);
   border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.55),
+  box-shadow: var(--pui-shadow-card),
               0 0 0 1px rgba(124,58,237,0.18),
               0 0 32px rgba(124,58,237,0.18);
   backdrop-filter: blur(10px);
@@ -586,10 +685,10 @@ button:hover > .pui-arrow,
   width: 100%;
   max-width: 720px;
   padding: 14px 14px 10px;
-  background: rgba(15, 15, 22, 0.85);
+  background: var(--pui-glass);
   border: 1px solid var(--pui-border-bright);
   border-radius: 18px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.55),
+  box-shadow: var(--pui-shadow-card),
               0 0 0 1px rgba(124, 58, 237, 0.18),
               0 0 32px rgba(124, 58, 237, 0.18);
   backdrop-filter: blur(10px);
@@ -625,7 +724,7 @@ button:hover > .pui-arrow,
   height: 30px;
   padding: 0;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--pui-overlay);
   border: 1px solid var(--pui-border-bright);
   color: var(--pui-fg-dim);
   cursor: pointer;
@@ -636,7 +735,7 @@ button:hover > .pui-arrow,
               transform 120ms var(--pui-ease);
 }
 .pui-promptbox__iconbtn:hover {
-  background: rgba(255, 255, 255, 0.07);
+  background: var(--pui-overlay-strong);
   color: var(--pui-fg);
   border-color: #3a3a4e;
 }
@@ -650,7 +749,7 @@ button:hover > .pui-arrow,
   height: 30px;
   padding: 0 10px 0 12px;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--pui-overlay);
   border: 1px solid var(--pui-border-bright);
   color: var(--pui-fg-dim);
   font-family: var(--pui-font-mono);
@@ -662,7 +761,7 @@ button:hover > .pui-arrow,
 }
 .pui-promptbox__model:hover {
   color: var(--pui-fg);
-  background: rgba(255, 255, 255, 0.07);
+  background: var(--pui-overlay-strong);
   border-color: #3a3a4e;
 }
 .pui-promptbox__menu {
@@ -674,7 +773,7 @@ button:hover > .pui-arrow,
   background: var(--pui-bg-elev);
   border: 1px solid var(--pui-border-bright);
   border-radius: 12px;
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6),
+  box-shadow: var(--pui-shadow-deep),
               0 0 0 1px rgba(124, 58, 237, 0.10);
   z-index: 10;
 }
@@ -748,15 +847,18 @@ button:hover > .pui-arrow,
   height: 28px;
   width: auto;
   opacity: 0.7;
-  filter: invert(92%) grayscale(100%) brightness(0.85);
+  filter: var(--pui-logo-filter);
   transition: opacity 200ms var(--pui-ease), filter 200ms var(--pui-ease);
 }
-.pui-marquee__item img:hover { opacity: 1; filter: invert(100%); }
+.pui-marquee__item img:hover {
+  opacity: 1;
+  filter: var(--pui-logo-filter-hover);
+}
 .pui-marquee__text {
   font-family: var(--pui-font-sans);
   font-size: 22px;
   font-weight: 700;
-  color: rgba(255,255,255,0.55);
+  color: var(--pui-logo-text);
   letter-spacing: -0.02em;
   white-space: nowrap;
 }
@@ -788,10 +890,10 @@ button:hover > .pui-arrow,
 .pui-logo-row__items img {
   height: 24px;
   opacity: 0.75;
-  filter: invert(92%) grayscale(100%);
+  filter: var(--pui-logo-filter);
 }
 .pui-logo-row__text {
-  color: rgba(255,255,255,0.65);
+  color: var(--pui-logo-text-strong);
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -815,9 +917,9 @@ button:hover > .pui-arrow,
   padding: 28px 26px 24px;
   border-radius: var(--pui-radius-xl);
   background: linear-gradient(180deg,
-    rgba(255,255,255,0.04),
-    rgba(255,255,255,0.015));
-  border: 1px solid rgba(255,255,255,0.07);
+    var(--pui-overlay),
+    transparent);
+  border: 1px solid var(--pui-overlay-strong);
   backdrop-filter: blur(20px);
   overflow: hidden;
   font-family: var(--pui-font-sans);
@@ -965,13 +1067,13 @@ button:hover > .pui-arrow,
 }
 .pui-bubble--user {
   margin-left: auto;
-  background: linear-gradient(135deg,#1a1a26,#11111a);
+  background: var(--pui-bubble-user-fill);
   border: 1px solid var(--pui-border-bright);
   border-bottom-right-radius: 4px;
 }
 .pui-bubble--ai {
   margin-right: auto;
-  background: rgba(15,15,22,0.78);
+  background: var(--pui-glass-deep);
   border: 1px solid rgba(124,58,237,0.35);
   box-shadow: 0 0 32px rgba(124,58,237,0.18);
   border-bottom-left-radius: 4px;
@@ -1171,15 +1273,15 @@ button:hover > .pui-arrow,
   align-items: center;
   gap: 8px;
   padding: 12px 18px;
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid var(--pui-button-dark-border);
   border-radius: 999px;
-  background: linear-gradient(180deg,#1a1a26,#0e0e16);
+  background: var(--pui-button-dark-fill);
   color: var(--pui-fg);
   font-family: var(--pui-font-sans);
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.55),
+  box-shadow: var(--pui-shadow-fab),
               0 0 0 1px rgba(124,58,237,0.25),
               0 0 32px rgba(124,58,237,0.35);
 }
@@ -1190,8 +1292,8 @@ button:hover > .pui-arrow,
   width: 340px;
   border-radius: 18px;
   border: 1px solid var(--pui-border-bright);
-  background: linear-gradient(180deg,#11111a,#0a0a12);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.65),
+  background: var(--pui-button-dark-popover-fill);
+  box-shadow: var(--pui-shadow-deep),
               0 0 60px rgba(124,58,237,0.22);
   overflow: hidden;
   font-family: var(--pui-font-sans);
@@ -1236,7 +1338,7 @@ button:hover > .pui-arrow,
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(20, 20, 28, 0.55);
+  background: var(--pui-glass-soft);
   border: 1px solid var(--pui-border-bright);
   border-radius: 999px;
   padding: 5px 5px 5px 16px;
@@ -1286,6 +1388,6 @@ button:hover > .pui-arrow,
               border-color 200ms var(--pui-ease);
 }
 .pui-community:hover { transform: translateY(-2px); border-color: rgba(124,58,237,0.4); }
-.pui-community__icon { width: 28px; height: 28px; opacity: 0.85; filter: invert(95%) grayscale(100%); }
+.pui-community__icon { width: 28px; height: 28px; opacity: 0.85; filter: var(--pui-logo-filter); }
 .pui-community__top { font-size: 14px; font-weight: 600; }
 .pui-community__bottom { margin-top: 2px; font-size: 12px; color: var(--pui-fg-mute); font-family: var(--pui-font-mono); }

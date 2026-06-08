@@ -48,7 +48,16 @@ const MockIDERoot = forwardRef<HTMLDivElement, MockIDEProps>(
     },
     ref,
   ) => (
-    <div ref={ref} className={cn("pui-ide", className)} {...rest}>
+    // MockIDE is a code-editor mock; code editors stay dark even in
+    // light-themed apps. Pin the data-theme attribute so child tokens
+    // (text colors etc.) resolve to dark values even when the page
+    // is in light mode.
+    <div
+      ref={ref}
+      data-theme="dark"
+      className={cn("pui-ide", className)}
+      {...rest}
+    >
       {children ?? (
         <>
           <Chrome filename={filename} thinking={thinkingLabel} />

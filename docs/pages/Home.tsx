@@ -30,10 +30,10 @@ export function Home() {
   return (
     <>
       <StickyBanner>
-        Now generally available · v0.0.2
+        Now generally available
       </StickyBanner>
 
-      <section className="home-hero">
+      <section className="home-hero" data-theme="dark">
         <Aurora />
         <AsciiHero
           variant="bare"
