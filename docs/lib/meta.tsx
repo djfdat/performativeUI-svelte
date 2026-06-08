@@ -520,7 +520,7 @@ export const COMPONENTS: ComponentMeta[] = [
 
   {
     slug: "prompt",
-    category: "Heroes",
+    category: "Primitives",
     name: "Prompt",
     snark: "The textarea every AI builder ships instead of explaining what their product does.",
     sources: [
