@@ -10,23 +10,44 @@ import {
 } from "performative-ui";
 import { COMPONENTS, CATEGORIES } from "../lib/meta";
 
-// Dynamically loads buttons.github.io AFTER React has mounted the
-// .github-button anchor — without this, the script's load-time DOM
-// scan misses our React-rendered button.
-function useGithubButtonScript() {
+// buttons.github.io auto-scans the DOM exactly once on script load.
+// React mounts Home AFTER that scan, and re-mounts it whenever the
+// user navigates back from another route — each time producing a new
+// <a class="github-button"> that the script no longer notices. So
+// every Home mount: (a) ensure the script is loaded, (b) trigger
+// window.GitHubButton.render() to re-scan and convert our anchor
+// into the proper iframe.
+function useGithubButtonRender() {
   useEffect(() => {
-    if (document.querySelector('script[src*="buttons.github.io/buttons.js"]')) {
+    const win = window as unknown as {
+      GitHubButton?: { render: (target?: Element) => void };
+    };
+
+    if (win.GitHubButton?.render) {
+      win.GitHubButton.render();
       return;
     }
-    const s = document.createElement("script");
-    s.async = true;
-    s.src = "https://buttons.github.io/buttons.js";
-    document.body.appendChild(s);
+
+    // Script not yet loaded — start it, then poll briefly for the
+    // global and call render once it's available.
+    if (!document.querySelector('script[src*="buttons.github.io/buttons.js"]')) {
+      const s = document.createElement("script");
+      s.async = true;
+      s.src = "https://buttons.github.io/buttons.js";
+      document.body.appendChild(s);
+    }
+    const interval = setInterval(() => {
+      if (win.GitHubButton?.render) {
+        clearInterval(interval);
+        win.GitHubButton.render();
+      }
+    }, 80);
+    return () => clearInterval(interval);
   }, []);
 }
 
 export function Home() {
-  useGithubButtonScript();
+  useGithubButtonRender();
   return (
     <>
       <StickyBanner>
