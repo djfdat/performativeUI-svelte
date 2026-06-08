@@ -2,7 +2,7 @@
   "name": "performative-ui",
   "version": "0.2.0",
   "private": false,
-  "description": "AI-native React components that signal how oversubscribed your funding round is.",
+  "description": "AI-native Svete components that signal how oversubscribed your funding round is.",
   "type": "module",
   "main": "./dist/performative-ui.js",
   "module": "./dist/performative-ui.js",
@@ -26,11 +26,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vorpus/performativeUI.git"
+    "url": "git+https://github.com/djfdat/performativeUI-svelte.git"
   },
-  "homepage": "https://vorpus.github.io/performativeUI/",
+  "homepage": "https://djfdat.github.io/performativeUI-svelte/",
   "bugs": {
-    "url": "https://github.com/vorpus/performativeUI/issues"
+    "url": "https://github.com/djfdat/performativeUI-svelte/issues"
   },
   "scripts": {
     "dev": "vite --config vite.docs.config.ts",
@@ -45,7 +45,6 @@
     "components",
     "ai",
     "landing-page",
-    "parody",
     "design-system"
   ],
   "license": "MIT",
