@@ -1,0 +1,215 @@
+- generic [ref=e3]:
+  - complementary [ref=e4]:
+    - generic [ref=e5]:
+      - link "◣ performative-ui" [ref=e6] [cursor=pointer]:
+        - /url: "#/"
+        - generic [ref=e7]: ◣
+        - generic [ref=e8]: performative-ui
+      - button "Switch to dark mode" [ref=e9] [cursor=pointer]:
+        - img [ref=e10]
+    - generic [ref=e12]:
+      - paragraph [ref=e13]: Atoms
+      - navigation [ref=e14]:
+        - link "Sparkle" [ref=e15] [cursor=pointer]:
+          - /url: "#/components/sparkle"
+        - link "GradientText" [ref=e16] [cursor=pointer]:
+          - /url: "#/components/gradient-text"
+        - link "StatusDot" [ref=e17] [cursor=pointer]:
+          - /url: "#/components/status-dot"
+    - generic [ref=e18]:
+      - paragraph [ref=e19]: Primitives
+      - navigation [ref=e20]:
+        - link "Button" [ref=e21] [cursor=pointer]:
+          - /url: "#/components/button"
+        - link "EyebrowPill" [ref=e22] [cursor=pointer]:
+          - /url: "#/components/eyebrow-pill"
+        - link "Prompt" [ref=e23] [cursor=pointer]:
+          - /url: "#/components/prompt"
+    - generic [ref=e24]:
+      - paragraph [ref=e25]: Banners
+      - navigation [ref=e26]:
+        - link "StickyBanner" [ref=e27] [cursor=pointer]:
+          - /url: "#/components/sticky-banner"
+    - generic [ref=e28]:
+      - paragraph [ref=e29]: Heroes
+      - navigation [ref=e30]:
+        - link "Rotator" [ref=e31] [cursor=pointer]:
+          - /url: "#/components/rotator"
+        - link "WordRoll" [ref=e32] [cursor=pointer]:
+          - /url: "#/components/word-roll"
+        - link "PromptHero" [ref=e33] [cursor=pointer]:
+          - /url: "#/components/prompt-hero"
+        - link "AsciiHero" [ref=e34] [cursor=pointer]:
+          - /url: "#/components/ascii-hero"
+    - generic [ref=e35]:
+      - paragraph [ref=e36]: Backgrounds
+      - navigation [ref=e37]:
+        - link "Aurora" [ref=e38] [cursor=pointer]:
+          - /url: "#/components/aurora"
+        - link "NodeGraphBackground" [ref=e39] [cursor=pointer]:
+          - /url: "#/components/node-graph"
+        - link "FloatingSparkles" [ref=e40] [cursor=pointer]:
+          - /url: "#/components/floating-sparkles"
+    - generic [ref=e41]:
+      - paragraph [ref=e42]: Surfaces
+      - navigation [ref=e43]:
+        - link "GlassCard" [ref=e44] [cursor=pointer]:
+          - /url: "#/components/glass-card"
+        - link "MockIDE" [ref=e45] [cursor=pointer]:
+          - /url: "#/components/mock-ide"
+    - generic [ref=e46]:
+      - paragraph [ref=e47]: Conversation
+      - navigation [ref=e48]:
+        - link "ChatBubble" [ref=e49] [cursor=pointer]:
+          - /url: "#/components/chat-bubble"
+        - link "TokenStream" [ref=e50] [cursor=pointer]:
+          - /url: "#/components/token-stream"
+        - link "ChatFAB" [ref=e51] [cursor=pointer]:
+          - /url: "#/components/chat-fab"
+    - generic [ref=e52]:
+      - paragraph [ref=e53]: Social Proof
+      - navigation [ref=e54]:
+        - link "LogoMarquee" [ref=e55] [cursor=pointer]:
+          - /url: "#/components/logo-marquee"
+        - link "LogoRow" [ref=e56] [cursor=pointer]:
+          - /url: "#/components/logo-row"
+        - link "StatCounter" [ref=e57] [cursor=pointer]:
+          - /url: "#/components/stat-counter"
+        - link "CommunityBadge" [ref=e58] [cursor=pointer]:
+          - /url: "#/components/community-badge"
+    - generic [ref=e59]:
+      - paragraph [ref=e60]: Pricing & Conversion
+      - navigation [ref=e61]:
+        - link "PricingCard" [ref=e62] [cursor=pointer]:
+          - /url: "#/components/pricing-card"
+        - link "BeforeAfter" [ref=e63] [cursor=pointer]:
+          - /url: "#/components/before-after"
+        - link "WaitlistForm" [ref=e64] [cursor=pointer]:
+          - /url: "#/components/waitlist-form"
+  - main [ref=e65]:
+    - article [ref=e219]:
+      - generic [ref=e220]:
+        - generic [ref=e222]: Pricing & Conversion
+        - heading "PricingCard" [level=1] [ref=e223]
+        - paragraph [ref=e224]: The middle one is glowing. Choose accordingly.
+        - paragraph [ref=e225]:
+          - text: As seen on
+          - link "vercel.com/pricing" [ref=e226] [cursor=pointer]:
+            - /url: https://vercel.com/pricing
+          - text: ","
+          - link "linear.app/pricing" [ref=e227] [cursor=pointer]:
+            - /url: https://linear.app/pricing
+          - text: ","
+          - link "anthropic.com/pricing" [ref=e228] [cursor=pointer]:
+            - /url: https://www.anthropic.com/pricing
+          - text: ", and 5,000 others who think they're snowflakes."
+      - paragraph [ref=e230]: "Compound pricing tile. The `featured` prop applies the gradient border + lift used for the 'Most popular' tier. Compose any subset of subcomponents in any order."
+      - generic [ref=e231]:
+        - heading "Examples" [level=2] [ref=e232]
+        - generic [ref=e233]:
+          - generic [ref=e234]: Three tiers
+          - generic [ref=e235]:
+            - article [ref=e236]:
+              - generic [ref=e237]: Hobby
+              - generic [ref=e238]:
+                - text: $0
+                - generic [ref=e239]: /mo
+              - paragraph [ref=e240]: For weekend experiments.
+              - list [ref=e241]:
+                - listitem [ref=e242]: ✓ 10K tokens / day
+                - listitem [ref=e243]: ✓ Community support
+              - link "Start free" [ref=e244] [cursor=pointer]:
+                - /url: "#"
+                - generic [ref=e245]: Start free
+            - article [ref=e246]:
+              - generic [ref=e247]:
+                - generic [ref=e248]: ✦
+                - generic [ref=e249]: Most popular
+              - generic [ref=e250]: Pro
+              - generic [ref=e251]:
+                - text: $49
+                - generic [ref=e252]: /mo
+              - paragraph [ref=e253]: For the serious solo builder.
+              - list [ref=e254]:
+                - listitem [ref=e255]: ✓ 1M tokens / day
+                - listitem [ref=e256]: ✓ Priority routing
+                - listitem [ref=e257]: ✓ Unlimited projects
+              - link "Upgrade" [ref=e258] [cursor=pointer]:
+                - /url: "#"
+                - generic [ref=e259]: Upgrade
+            - article [ref=e260]:
+              - generic [ref=e261]: Enterprise
+              - generic [ref=e262]: Custom
+              - paragraph [ref=e263]: For teams who say "leverage" a lot.
+              - list [ref=e264]:
+                - listitem [ref=e265]: ✓ VPC deploy
+                - listitem [ref=e266]: ✓ SOC 2 / HIPAA
+              - link "Talk to sales" [ref=e267] [cursor=pointer]:
+                - /url: "#"
+                - generic [ref=e268]: Talk to sales
+          - generic [ref=e269]:
+            - button "copy" [ref=e270] [cursor=pointer]
+            - generic [ref=e271]: <PricingCard featured> <PricingCardFlag>Most popular</PricingCardFlag> <PricingCardTier>Pro</PricingCardTier> <PricingCardAmount unit="/mo">$49</PricingCardAmount> <PricingCardBlurb>For the serious solo builder.</PricingCardBlurb> <PricingCardFeatures> <li>1M tokens / day</li> <li>Priority routing</li> </PricingCardFeatures> <PricingCardCTA href="/upgrade">Upgrade</PricingCardCTA> </PricingCard>
+      - generic [ref=e272]:
+        - heading "Props" [level=2] [ref=e273]
+        - table [ref=e274]:
+          - rowgroup [ref=e275]:
+            - row "Prop Type Default Description" [ref=e276]:
+              - columnheader "Prop" [ref=e277]
+              - columnheader "Type" [ref=e278]
+              - columnheader "Default" [ref=e279]
+              - columnheader "Description" [ref=e280]
+          - rowgroup [ref=e281]:
+            - row "featured boolean - Gradient border + glow + lift." [ref=e282]:
+              - cell "featured" [ref=e283]
+              - cell "boolean" [ref=e284]
+              - cell "-" [ref=e285]
+              - cell "Gradient border + glow + lift." [ref=e286]
+        - generic [ref=e287]:
+          - generic [ref=e288]: PricingCardFlag
+          - table [ref=e289]:
+            - rowgroup [ref=e290]:
+              - row "Prop Type Default Description" [ref=e291]:
+                - columnheader "Prop" [ref=e292]
+                - columnheader "Type" [ref=e293]
+                - columnheader "Default" [ref=e294]
+                - columnheader "Description" [ref=e295]
+            - rowgroup [ref=e296]:
+              - row "hideSparkle boolean - Drop the leading ✦." [ref=e297]:
+                - cell "hideSparkle" [ref=e298]
+                - cell "boolean" [ref=e299]
+                - cell "-" [ref=e300]
+                - cell "Drop the leading ✦." [ref=e301]
+        - generic [ref=e303]: PricingCardTier
+        - generic [ref=e304]:
+          - generic [ref=e305]: PricingCardAmount
+          - table [ref=e306]:
+            - rowgroup [ref=e307]:
+              - row "Prop Type Default Description" [ref=e308]:
+                - columnheader "Prop" [ref=e309]
+                - columnheader "Type" [ref=e310]
+                - columnheader "Default" [ref=e311]
+                - columnheader "Description" [ref=e312]
+            - rowgroup [ref=e313]:
+              - row "unit Snippet | string - Suffix like /mo." [ref=e314]:
+                - cell "unit" [ref=e315]
+                - cell "Snippet | string" [ref=e316]
+                - cell "-" [ref=e317]
+                - cell "Suffix like /mo." [ref=e318]
+        - generic [ref=e320]: PricingCardBlurb
+        - generic [ref=e322]: PricingCardFeatures
+        - generic [ref=e323]:
+          - generic [ref=e324]: PricingCardCTA
+          - table [ref=e325]:
+            - rowgroup [ref=e326]:
+              - row "Prop Type Default Description" [ref=e327]:
+                - columnheader "Prop" [ref=e328]
+                - columnheader "Type" [ref=e329]
+                - columnheader "Default" [ref=e330]
+                - columnheader "Description" [ref=e331]
+            - rowgroup [ref=e332]:
+              - row "href string - Anchor target." [ref=e333]:
+                - cell "href" [ref=e334]
+                - cell "string" [ref=e335]
+                - cell "-" [ref=e336]
+                - cell "Anchor target." [ref=e337]

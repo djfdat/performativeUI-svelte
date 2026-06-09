@@ -1,0 +1,258 @@
+- generic [ref=e3]:
+  - complementary [ref=e4]:
+    - generic [ref=e5]:
+      - link "◣ performative-ui" [ref=e6] [cursor=pointer]:
+        - /url: "#/"
+        - generic [ref=e7]: ◣
+        - generic [ref=e8]: performative-ui
+      - button "Switch to dark mode" [ref=e9] [cursor=pointer]:
+        - img [ref=e10]
+    - generic [ref=e12]:
+      - paragraph [ref=e13]: Atoms
+      - navigation [ref=e14]:
+        - link "Sparkle" [ref=e15] [cursor=pointer]:
+          - /url: "#/components/sparkle"
+        - link "GradientText" [ref=e16] [cursor=pointer]:
+          - /url: "#/components/gradient-text"
+        - link "StatusDot" [ref=e17] [cursor=pointer]:
+          - /url: "#/components/status-dot"
+    - generic [ref=e18]:
+      - paragraph [ref=e19]: Primitives
+      - navigation [ref=e20]:
+        - link "Button" [ref=e21] [cursor=pointer]:
+          - /url: "#/components/button"
+        - link "EyebrowPill" [ref=e22] [cursor=pointer]:
+          - /url: "#/components/eyebrow-pill"
+        - link "Prompt" [ref=e23] [cursor=pointer]:
+          - /url: "#/components/prompt"
+    - generic [ref=e24]:
+      - paragraph [ref=e25]: Banners
+      - navigation [ref=e26]:
+        - link "StickyBanner" [ref=e27] [cursor=pointer]:
+          - /url: "#/components/sticky-banner"
+    - generic [ref=e28]:
+      - paragraph [ref=e29]: Heroes
+      - navigation [ref=e30]:
+        - link "Rotator" [ref=e31] [cursor=pointer]:
+          - /url: "#/components/rotator"
+        - link "WordRoll" [ref=e32] [cursor=pointer]:
+          - /url: "#/components/word-roll"
+        - link "PromptHero" [ref=e33] [cursor=pointer]:
+          - /url: "#/components/prompt-hero"
+        - link "AsciiHero" [ref=e34] [cursor=pointer]:
+          - /url: "#/components/ascii-hero"
+    - generic [ref=e35]:
+      - paragraph [ref=e36]: Backgrounds
+      - navigation [ref=e37]:
+        - link "Aurora" [ref=e38] [cursor=pointer]:
+          - /url: "#/components/aurora"
+        - link "NodeGraphBackground" [ref=e39] [cursor=pointer]:
+          - /url: "#/components/node-graph"
+        - link "FloatingSparkles" [ref=e40] [cursor=pointer]:
+          - /url: "#/components/floating-sparkles"
+    - generic [ref=e41]:
+      - paragraph [ref=e42]: Surfaces
+      - navigation [ref=e43]:
+        - link "GlassCard" [ref=e44] [cursor=pointer]:
+          - /url: "#/components/glass-card"
+        - link "MockIDE" [ref=e45] [cursor=pointer]:
+          - /url: "#/components/mock-ide"
+    - generic [ref=e46]:
+      - paragraph [ref=e47]: Conversation
+      - navigation [ref=e48]:
+        - link "ChatBubble" [ref=e49] [cursor=pointer]:
+          - /url: "#/components/chat-bubble"
+        - link "TokenStream" [ref=e50] [cursor=pointer]:
+          - /url: "#/components/token-stream"
+        - link "ChatFAB" [ref=e51] [cursor=pointer]:
+          - /url: "#/components/chat-fab"
+    - generic [ref=e52]:
+      - paragraph [ref=e53]: Social Proof
+      - navigation [ref=e54]:
+        - link "LogoMarquee" [ref=e55] [cursor=pointer]:
+          - /url: "#/components/logo-marquee"
+        - link "LogoRow" [ref=e56] [cursor=pointer]:
+          - /url: "#/components/logo-row"
+        - link "StatCounter" [ref=e57] [cursor=pointer]:
+          - /url: "#/components/stat-counter"
+        - link "CommunityBadge" [ref=e58] [cursor=pointer]:
+          - /url: "#/components/community-badge"
+    - generic [ref=e59]:
+      - paragraph [ref=e60]: Pricing & Conversion
+      - navigation [ref=e61]:
+        - link "PricingCard" [ref=e62] [cursor=pointer]:
+          - /url: "#/components/pricing-card"
+        - link "BeforeAfter" [ref=e63] [cursor=pointer]:
+          - /url: "#/components/before-after"
+        - link "WaitlistForm" [ref=e64] [cursor=pointer]:
+          - /url: "#/components/waitlist-form"
+  - main [ref=e65]:
+    - generic [ref=e66]:
+      - generic [ref=e67]: ✦
+      - generic [ref=e68]: Now generally available
+    - generic [ref=e72]:
+      - generic [ref=e75]: 26 components · MIT licensed
+      - heading "AI-native Svelte components for A" [level=2] [ref=e76]:
+        - generic [ref=e77]: AI-native Svelte components for
+        - generic [ref=e80]: A
+      - paragraph [ref=e82]: Components that signal how oversubscribed your funding round is.
+      - generic [ref=e83]: $ npm install performative-ui
+      - link "Star vorpus/performativeUI on GitHub" [ref=e85] [cursor=pointer]:
+        - /url: https://github.com/vorpus/performativeUI
+        - text: Star
+    - generic [ref=e86]:
+      - heading "Atoms" [level=2] [ref=e87]
+      - generic [ref=e88]:
+        - link "Atoms Sparkle Add ✦ to any noun to ship it twice as fast." [ref=e89] [cursor=pointer]:
+          - /url: "#/components/sparkle"
+          - generic [ref=e90]: Atoms
+          - generic [ref=e91]: Sparkle
+          - generic [ref=e92]: Add ✦ to any noun to ship it twice as fast.
+        - link "Atoms GradientText When italic isn't billion-dollar enough." [ref=e93] [cursor=pointer]:
+          - /url: "#/components/gradient-text"
+          - generic [ref=e94]: Atoms
+          - generic [ref=e95]: GradientText
+          - generic [ref=e96]: When italic isn't billion-dollar enough.
+        - link "Atoms StatusDot Always green, even when it's not." [ref=e97] [cursor=pointer]:
+          - /url: "#/components/status-dot"
+          - generic [ref=e98]: Atoms
+          - generic [ref=e99]: StatusDot
+          - generic [ref=e100]: Always green, even when it's not.
+    - generic [ref=e101]:
+      - heading "Primitives" [level=2] [ref=e102]
+      - generic [ref=e103]:
+        - link "Primitives Button We made the button move so you'd click the button." [ref=e104] [cursor=pointer]:
+          - /url: "#/components/button"
+          - generic [ref=e105]: Primitives
+          - generic [ref=e106]: Button
+          - generic [ref=e107]: We made the button move so you'd click the button.
+        - link "Primitives EyebrowPill Where the model name goes when there's nothing else to say." [ref=e108] [cursor=pointer]:
+          - /url: "#/components/eyebrow-pill"
+          - generic [ref=e109]: Primitives
+          - generic [ref=e110]: EyebrowPill
+          - generic [ref=e111]: Where the model name goes when there's nothing else to say.
+        - link "Primitives Prompt The textarea every AI builder ships instead of explaining what their product does." [ref=e112] [cursor=pointer]:
+          - /url: "#/components/prompt"
+          - generic [ref=e113]: Primitives
+          - generic [ref=e114]: Prompt
+          - generic [ref=e115]: The textarea every AI builder ships instead of explaining what their product does.
+    - generic [ref=e116]:
+      - heading "Banners" [level=2] [ref=e117]
+      - link "Banners StickyBanner Funding news disguised as utility." [ref=e119] [cursor=pointer]:
+        - /url: "#/components/sticky-banner"
+        - generic [ref=e120]: Banners
+        - generic [ref=e121]: StickyBanner
+        - generic [ref=e122]: Funding news disguised as utility.
+    - generic [ref=e123]:
+      - heading "Heroes" [level=2] [ref=e124]
+      - generic [ref=e125]:
+        - link "Heroes Rotator Because saying \"everything\" wasn't ambitious enough." [ref=e126] [cursor=pointer]:
+          - /url: "#/components/rotator"
+          - generic [ref=e127]: Heroes
+          - generic [ref=e128]: Rotator
+          - generic [ref=e129]: Because saying "everything" wasn't ambitious enough.
+        - link "Heroes WordRoll All the breadth-flexing of a Rotator, without making the visitor wait for it to type." [ref=e130] [cursor=pointer]:
+          - /url: "#/components/word-roll"
+          - generic [ref=e131]: Heroes
+          - generic [ref=e132]: WordRoll
+          - generic [ref=e133]: All the breadth-flexing of a Rotator, without making the visitor wait for it to type.
+        - link "Heroes PromptHero We replaced the value prop with a text input." [ref=e134] [cursor=pointer]:
+          - /url: "#/components/prompt-hero"
+          - generic [ref=e135]: Heroes
+          - generic [ref=e136]: PromptHero
+          - generic [ref=e137]: We replaced the value prop with a text input.
+        - link "Heroes AsciiHero For hackers, by people who follow the right newsletters." [ref=e138] [cursor=pointer]:
+          - /url: "#/components/ascii-hero"
+          - generic [ref=e139]: Heroes
+          - generic [ref=e140]: AsciiHero
+          - generic [ref=e141]: For hackers, by people who follow the right newsletters.
+    - generic [ref=e142]:
+      - heading "Backgrounds" [level=2] [ref=e143]
+      - generic [ref=e144]:
+        - link "Backgrounds Aurora Three blobs and a generation defined." [ref=e145] [cursor=pointer]:
+          - /url: "#/components/aurora"
+          - generic [ref=e146]: Backgrounds
+          - generic [ref=e147]: Aurora
+          - generic [ref=e148]: Three blobs and a generation defined.
+        - link "Backgrounds NodeGraphBackground A neural network, conceptually." [ref=e149] [cursor=pointer]:
+          - /url: "#/components/node-graph"
+          - generic [ref=e150]: Backgrounds
+          - generic [ref=e151]: NodeGraphBackground
+          - generic [ref=e152]: A neural network, conceptually.
+        - link "Backgrounds FloatingSparkles Magic doesn't ship itself." [ref=e153] [cursor=pointer]:
+          - /url: "#/components/floating-sparkles"
+          - generic [ref=e154]: Backgrounds
+          - generic [ref=e155]: FloatingSparkles
+          - generic [ref=e156]: Magic doesn't ship itself.
+    - generic [ref=e157]:
+      - heading "Surfaces" [level=2] [ref=e158]
+      - generic [ref=e159]:
+        - 'link "Surfaces GlassCard Backdrop-filter: ambition." [ref=e160] [cursor=pointer]':
+          - /url: "#/components/glass-card"
+          - generic [ref=e161]: Surfaces
+          - generic [ref=e162]: GlassCard
+          - generic [ref=e163]: "Backdrop-filter: ambition."
+        - link "Surfaces MockIDE Real code is coming. This is the trailer." [ref=e164] [cursor=pointer]:
+          - /url: "#/components/mock-ide"
+          - generic [ref=e165]: Surfaces
+          - generic [ref=e166]: MockIDE
+          - generic [ref=e167]: Real code is coming. This is the trailer.
+    - generic [ref=e168]:
+      - heading "Conversation" [level=2] [ref=e169]
+      - generic [ref=e170]:
+        - link "Conversation ChatBubble If it's in a bubble, it must be true." [ref=e171] [cursor=pointer]:
+          - /url: "#/components/chat-bubble"
+          - generic [ref=e172]: Conversation
+          - generic [ref=e173]: ChatBubble
+          - generic [ref=e174]: If it's in a bubble, it must be true.
+        - link "Conversation TokenStream Server-sent events (SSE) were added to the HTML5 spec in 2008 but never used until 2025." [ref=e175] [cursor=pointer]:
+          - /url: "#/components/token-stream"
+          - generic [ref=e176]: Conversation
+          - generic [ref=e177]: TokenStream
+          - generic [ref=e178]: Server-sent events (SSE) were added to the HTML5 spec in 2008 but never used until 2025.
+        - link "Conversation ChatFAB There's no escape now." [ref=e179] [cursor=pointer]:
+          - /url: "#/components/chat-fab"
+          - generic [ref=e180]: Conversation
+          - generic [ref=e181]: ChatFAB
+          - generic [ref=e182]: There's no escape now.
+    - generic [ref=e183]:
+      - heading "Social Proof" [level=2] [ref=e184]
+      - generic [ref=e185]:
+        - link "Social Proof LogoMarquee Trusted by everyone you've heard of, including the ones that didn't sign." [ref=e186] [cursor=pointer]:
+          - /url: "#/components/logo-marquee"
+          - generic [ref=e187]: Social Proof
+          - generic [ref=e188]: LogoMarquee
+          - generic [ref=e189]: Trusted by everyone you've heard of, including the ones that didn't sign.
+        - link "Social Proof LogoRow Static logos are for when you only have six." [ref=e190] [cursor=pointer]:
+          - /url: "#/components/logo-row"
+          - generic [ref=e191]: Social Proof
+          - generic [ref=e192]: LogoRow
+          - generic [ref=e193]: Static logos are for when you only have six.
+        - link "Social Proof StatCounter Numbers that go up are better than numbers that don't." [ref=e194] [cursor=pointer]:
+          - /url: "#/components/stat-counter"
+          - generic [ref=e195]: Social Proof
+          - generic [ref=e196]: StatCounter
+          - generic [ref=e197]: Numbers that go up are better than numbers that don't.
+        - link "Social Proof CommunityBadge Stars are the new MAU." [ref=e198] [cursor=pointer]:
+          - /url: "#/components/community-badge"
+          - generic [ref=e199]: Social Proof
+          - generic [ref=e200]: CommunityBadge
+          - generic [ref=e201]: Stars are the new MAU.
+    - generic [ref=e202]:
+      - heading "Pricing & Conversion" [level=2] [ref=e203]
+      - generic [ref=e204]:
+        - link "Pricing & Conversion PricingCard The middle one is glowing. Choose accordingly." [ref=e205] [cursor=pointer]:
+          - /url: "#/components/pricing-card"
+          - generic [ref=e206]: Pricing & Conversion
+          - generic [ref=e207]: PricingCard
+          - generic [ref=e208]: The middle one is glowing. Choose accordingly.
+        - 'link "Pricing & Conversion BeforeAfter On the left: chaos. On the right: us." [ref=e209] [cursor=pointer]':
+          - /url: "#/components/before-after"
+          - generic [ref=e210]: Pricing & Conversion
+          - generic [ref=e211]: BeforeAfter
+          - generic [ref=e212]: "On the left: chaos. On the right: us."
+        - link "Pricing & Conversion WaitlistForm Demand we manufactured ourselves." [ref=e213] [cursor=pointer]:
+          - /url: "#/components/waitlist-form"
+          - generic [ref=e214]: Pricing & Conversion
+          - generic [ref=e215]: WaitlistForm
+          - generic [ref=e216]: Demand we manufactured ourselves.
