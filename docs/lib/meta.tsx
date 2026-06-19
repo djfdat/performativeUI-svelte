@@ -15,6 +15,10 @@ import {
   FloatingSparkles,
   GlassCard,
   MockIDE,
+  SecurityTheater,
+  MetricStack,
+  ScrollNarrative,
+  LaunchTimeline,
   ChatBubble,
   TokenStream,
   ChatFAB,
@@ -1580,6 +1584,265 @@ export const COMPONENTS: ComponentMeta[] = [
       { name: "leading", type: "ReactNode | false", desc: "Leading icon. Defaults to an envelope SVG; pass false to remove or any node to replace." },
       { name: "footnote", type: "ReactNode", desc: "Small line of text rendered below the form." },
       { name: "onSubmit", type: "(email: string) => void", desc: "Submit callback." },
+    ],
+  },
+
+  /* ============================ NARRATIVE & PROOF ============================ */
+  {
+    slug: "security-theater",
+    category: "Narrative & Proof",
+    name: "SecurityTheater",
+    snark: "Compliance, but make it investor-readable.",
+    sources: [
+      { name: "vercel.com", url: "https://vercel.com" },
+      { name: "linear.app", url: "https://linear.app" },
+      { name: "cursor.com", url: "https://cursor.com" },
+    ],
+    extra: 910,
+    description:
+      "A trust panel for security, compliance, and enterprise procurement claims. Pass `items` for the quick form, or compose Header, Seal, Grid, and Item manually.",
+    examples: [
+      {
+        title: "Quick form",
+        stretch: true,
+        Demo: () => (
+          <div style={{ padding: 24 }}>
+            <SecurityTheater
+              eyebrow="Trust posture"
+              title="Enterprise-ready enough"
+              summary="Every important box is either checked, in progress, or written in a way procurement can screenshot."
+              seal="SOC 2-ish"
+              items={[
+                { label: "Encryption", value: "AES-256", status: "verified", detail: "At rest, in transit, and in the deck." },
+                { label: "Data residency", value: "US/EU", status: "pending", detail: "Regional controls are rolling out." },
+                { label: "Audit logs", value: "90 days", status: "verified" },
+                { label: "Vendor review", value: "Soon", status: "attention" },
+              ]}
+            />
+          </div>
+        ),
+        code: `<SecurityTheater
+  eyebrow="Trust posture"
+  title="Enterprise-ready enough"
+  summary="Every important box is either checked, in progress, or written in a way procurement can screenshot."
+  seal="SOC 2-ish"
+  items={[
+    { label: "Encryption", value: "AES-256", status: "verified" },
+    { label: "Data residency", value: "US/EU", status: "pending" },
+    { label: "Audit logs", value: "90 days", status: "verified" },
+  ]}
+/>`,
+      },
+      {
+        title: "Compound layout",
+        Demo: () => (
+          <SecurityTheater animated={false}>
+            <div className="pui-security__intro">
+              <SecurityTheater.Header
+                eyebrow="Manual composition"
+                title="Bring your own procurement ritual"
+                summary="Use the compound parts when the badge, copy, or grid needs custom placement."
+              />
+              <SecurityTheater.Seal>Reviewed</SecurityTheater.Seal>
+            </div>
+            <SecurityTheater.Grid>
+              <SecurityTheater.Item label="Access review" value="Quarterly" status="verified" />
+              <SecurityTheater.Item label="DPA" value="Available" status="verified" />
+            </SecurityTheater.Grid>
+          </SecurityTheater>
+        ),
+        code: `<SecurityTheater animated={false}>
+  <div className="pui-security__intro">
+    <SecurityTheater.Header
+      eyebrow="Manual composition"
+      title="Bring your own procurement ritual"
+      summary="Use the compound parts when the badge, copy, or grid needs custom placement."
+    />
+    <SecurityTheater.Seal>Reviewed</SecurityTheater.Seal>
+  </div>
+  <SecurityTheater.Grid>
+    <SecurityTheater.Item label="Access review" value="Quarterly" status="verified" />
+    <SecurityTheater.Item label="DPA" value="Available" status="verified" />
+  </SecurityTheater.Grid>
+</SecurityTheater>`,
+      },
+    ],
+    props: [
+      { name: "title", type: "ReactNode", desc: "Panel heading." },
+      { name: "eyebrow", type: "ReactNode", desc: "Small label above the heading." },
+      { name: "summary", type: "ReactNode", desc: "Short supporting copy." },
+      { name: "items", type: "SecurityTheaterItem[]", desc: "Quick-form trust rows." },
+      { name: "seal", type: "ReactNode", desc: "Round proof badge content." },
+      { name: "animated", type: "boolean", default: "true", desc: "Enable the scan sheen." },
+    ],
+    subprops: [
+      { name: "SecurityTheater.Item", props: [
+        { name: "label", type: "ReactNode", desc: "Claim label." },
+        { name: "value", type: "ReactNode", desc: "Claim value." },
+        { name: "status", type: '"verified" | "pending" | "attention"', desc: "Status tone." },
+        { name: "detail", type: "ReactNode", desc: "Optional explanatory line." },
+      ] },
+    ],
+  },
+
+  {
+    slug: "launch-timeline",
+    category: "Narrative & Proof",
+    name: "LaunchTimeline",
+    snark: "The day everything becomes generally available.",
+    sources: [
+      { name: "producthunt.com", url: "https://www.producthunt.com" },
+      { name: "vercel.com/changelog", url: "https://vercel.com/changelog" },
+      { name: "linear.app/changelog", url: "https://linear.app/changelog" },
+    ],
+    extra: 540,
+    description:
+      "An ordered launch sequence with done, active, and queued states. Use it for release days, public beta rollouts, and theatrical changelogs.",
+    examples: [
+      {
+        title: "Release day",
+        Demo: () => (
+          <div style={{ width: "min(520px, 100%)" }}>
+            <LaunchTimeline
+              current={1}
+              items={[
+                { time: "09:00", title: "Waitlist opens", detail: "Synthetic demand warms up.", meta: "done" },
+                { time: "10:30", title: "Launch tweet", detail: "All hands like it.", meta: "live" },
+                { time: "12:00", title: "Founder podcast", detail: "Talk about distribution.", meta: "queued" },
+              ]}
+            />
+          </div>
+        ),
+        code: `<LaunchTimeline
+  current={1}
+  items={[
+    { time: "09:00", title: "Waitlist opens", detail: "Synthetic demand warms up." },
+    { time: "10:30", title: "Launch tweet", detail: "All hands like it." },
+    { time: "12:00", title: "Founder podcast", detail: "Talk about distribution." },
+  ]}
+/>`,
+      },
+    ],
+    props: [
+      { name: "items", type: "LaunchTimelineItem[]", desc: "Quick-form timeline steps." },
+      { name: "current", type: "number", default: "0", desc: "Active step index when item state is omitted." },
+      { name: "animated", type: "boolean", default: "true", desc: "Enable staged entrance." },
+    ],
+    subprops: [
+      { name: "LaunchTimeline.Item", props: [{ name: "state", type: '"done" | "active" | "queued"', desc: "Step state." }] },
+      { name: "LaunchTimeline.Time", props: [] },
+      { name: "LaunchTimeline.Title", props: [] },
+      { name: "LaunchTimeline.Detail", props: [] },
+      { name: "LaunchTimeline.Meta", props: [] },
+    ],
+  },
+
+  {
+    slug: "metric-stack",
+    category: "Narrative & Proof",
+    name: "MetricStack",
+    snark: "The KPI grid went on a cleanse.",
+    sources: [
+      { name: "stripe.com", url: "https://stripe.com" },
+      { name: "linear.app", url: "https://linear.app" },
+      { name: "anthropic.com", url: "https://www.anthropic.com" },
+    ],
+    extra: 760,
+    description:
+      "A dense stack of proof metrics for traction, efficiency, and operational claims. It reads like a quiet financial terminal instead of a dashboard card mosaic.",
+    examples: [
+      {
+        title: "Traction stack",
+        Demo: () => (
+          <MetricStack
+            title="Board deck numbers"
+            caption="Updated whenever the story needs to be true."
+            metrics={[
+              { label: "Pipeline", value: "$12.4M", delta: "+38%", tone: "good", caption: "Weighted enterprise opportunities." },
+              { label: "CAC payback", value: "11d", delta: "-9d", tone: "good" },
+              { label: "GPU burn", value: "$48k", delta: "+12%", tone: "warn" },
+            ]}
+          />
+        ),
+        code: `<MetricStack
+  title="Board deck numbers"
+  metrics={[
+    { label: "Pipeline", value: "$12.4M", delta: "+38%", tone: "good" },
+    { label: "CAC payback", value: "11d", delta: "-9d", tone: "good" },
+    { label: "GPU burn", value: "$48k", delta: "+12%", tone: "warn" },
+  ]}
+/>`,
+      },
+    ],
+    props: [
+      { name: "metrics", type: "MetricStackMetric[]", desc: "Quick-form metric rows." },
+      { name: "title", type: "ReactNode", desc: "Optional stack heading." },
+      { name: "caption", type: "ReactNode", desc: "Optional supporting line." },
+      { name: "density", type: '"comfortable" | "compact"', default: '"comfortable"', desc: "Spacing density." },
+    ],
+    subprops: [
+      { name: "MetricStack.Row", props: [{ name: "tone", type: '"neutral" | "good" | "warn" | "danger"', desc: "Metric tone." }] },
+      { name: "MetricStack.Label", props: [] },
+      { name: "MetricStack.Value", props: [] },
+      { name: "MetricStack.Delta", props: [{ name: "tone", type: '"neutral" | "good" | "warn" | "danger"', desc: "Delta tone." }] },
+      { name: "MetricStack.Caption", props: [] },
+    ],
+  },
+
+  {
+    slug: "scroll-narrative",
+    category: "Narrative & Proof",
+    name: "ScrollNarrative",
+    snark: "Because the workflow needs a dramatic pause.",
+    sources: [
+      { name: "framer.com", url: "https://www.framer.com" },
+      { name: "runwayml.com", url: "https://runwayml.com" },
+      { name: "openai.com", url: "https://openai.com" },
+    ],
+    extra: 680,
+    description:
+      "A stepped narrative section for explaining a workflow without adding another fake dashboard. It pairs concise copy with a sticky visual rail.",
+    examples: [
+      {
+        title: "Workflow story",
+        stretch: true,
+        Demo: () => (
+          <div style={{ padding: 28 }}>
+            <ScrollNarrative
+              title="From prompt to procurement"
+              intro="A calm sequence for making impossible software feel inevitable."
+              steps={[
+                { kicker: "01", title: "Prompt", body: "Ask for the whole company to become autonomous.", visual: "Input intent" },
+                { kicker: "02", title: "Polish", body: "Turn the output into something with margins and confidence.", visual: "Refine surface" },
+                { kicker: "03", title: "Procure", body: "Hand security a panel that looks reassuring.", visual: "Approve spend" },
+              ]}
+            />
+          </div>
+        ),
+        code: `<ScrollNarrative
+  title="From prompt to procurement"
+  intro="A calm sequence for making impossible software feel inevitable."
+  steps={[
+    { kicker: "01", title: "Prompt", body: "Ask for the whole company to become autonomous.", visual: "Input intent" },
+    { kicker: "02", title: "Polish", body: "Turn the output into something with margins and confidence.", visual: "Refine surface" },
+    { kicker: "03", title: "Procure", body: "Hand security a panel that looks reassuring.", visual: "Approve spend" },
+  ]}
+/>`,
+      },
+    ],
+    props: [
+      { name: "steps", type: "ScrollNarrativeStep[]", desc: "Quick-form story steps. Keep essential meaning in title/body; visual rail content is decorative." },
+      { name: "title", type: "ReactNode", desc: "Optional section heading." },
+      { name: "intro", type: "ReactNode", desc: "Optional intro copy." },
+      { name: "align", type: '"left" | "right"', default: '"left"', desc: "Which side owns the text rail." },
+    ],
+    subprops: [
+      { name: "ScrollNarrative.Stage", props: [] },
+      { name: "ScrollNarrative.Step", props: [] },
+      { name: "ScrollNarrative.Kicker", props: [] },
+      { name: "ScrollNarrative.Title", props: [{ name: "as", type: '"h2" | "h3" | "h4"', default: '"h3"', desc: "Heading tag." }] },
+      { name: "ScrollNarrative.Body", props: [] },
+      { name: "ScrollNarrative.Visual", props: [] },
     ],
   },
 ];

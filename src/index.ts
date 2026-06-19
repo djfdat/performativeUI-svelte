@@ -47,6 +47,26 @@ export {
   type IdeToken,
   type IdeTokenClass,
 } from "./components/MockIDE";
+export {
+  SecurityTheater,
+  type SecurityTheaterProps,
+  type SecurityTheaterItem,
+} from "./components/SecurityTheater";
+export {
+  MetricStack,
+  type MetricStackProps,
+  type MetricStackMetric,
+} from "./components/MetricStack";
+export {
+  ScrollNarrative,
+  type ScrollNarrativeProps,
+  type ScrollNarrativeStep,
+} from "./components/ScrollNarrative";
+export {
+  LaunchTimeline,
+  type LaunchTimelineProps,
+  type LaunchTimelineItem,
+} from "./components/LaunchTimeline";
 
 // Conversation
 export {
