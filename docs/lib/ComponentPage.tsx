@@ -32,10 +32,14 @@ export interface ComponentMeta {
   slug: string;
   category: string;
   name: string;
+  /** Marks a recently added component in catalog navigation. */
+  isNew?: boolean;
   snark: string;
   sources: Source[];
   extra?: number;
   description: ReactNode;
+  /** Optional component-specific usage guidance. */
+  usage?: ReactNode;
   examples: ExampleSpec[];
   props: PropSpec[];
   /** Sub-components for compound components (e.g. PricingCard.Tier). */
@@ -43,6 +47,9 @@ export interface ComponentMeta {
 }
 
 export function ComponentPage({ meta }: { meta: ComponentMeta }) {
+  const importCode = `import { ${meta.name} } from "performative-ui";
+import "performative-ui/styles.css";`;
+
   return (
     <article>
       <header className="cp-header">
@@ -55,6 +62,26 @@ export function ComponentPage({ meta }: { meta: ComponentMeta }) {
 
       <section className="cp-section">
         <p className="cp-description">{meta.description}</p>
+      </section>
+
+      <section className="cp-section">
+        <h2 className="cp-section__title">Usage</h2>
+        <div className="usage">
+          <div className="usage__copy">
+            {meta.usage ?? (
+              <p>
+                Use <code>{meta.name}</code> from the {meta.category} section
+                when you need this pattern in a React landing page. Import the
+                component where it appears, load the package CSS once, then
+                start from the examples below.
+              </p>
+            )}
+          </div>
+          <div className="usage__codes">
+            <CodeBlock code="npm install performative-ui" />
+            <CodeBlock code={importCode} />
+          </div>
+        </div>
       </section>
 
       <section className="cp-section">

@@ -2,6 +2,11 @@ import {
   Sparkle,
   GradientText,
   StatusDot,
+  LatencyPing,
+  ModelChip,
+  TokenBadge,
+  ConfidenceMeter,
+  SourceGlyph,
   Button,
   StickyBanner,
   EyebrowPill,
@@ -19,13 +24,17 @@ import {
   MetricStack,
   ScrollNarrative,
   LaunchTimeline,
+  AgentRunway,
+  ModelLeaderboard,
   ChatBubble,
   TokenStream,
   ChatFAB,
+  PromptComposer,
   LogoMarquee,
   LogoRow,
   StatCounter,
   CommunityBadge,
+  FomoFeed,
   PricingCard,
   BeforeAfter,
   WaitlistForm,
@@ -187,6 +196,224 @@ export const COMPONENTS: ComponentMeta[] = [
     props: [
       { name: "color", type: "string", default: "var(--pui-success)", desc: "CSS color." },
       { name: "static", type: "boolean", desc: "Disable the pulse." },
+    ],
+  },
+
+  {
+    slug: "latency-ping",
+    category: "Atoms",
+    name: "LatencyPing",
+    isNew: true,
+    snark: "A tiny dot for pretending 18ms was inevitable.",
+    sources: [
+      { name: "vercel.com", url: "https://vercel.com" },
+      { name: "linear.app", url: "https://linear.app" },
+      { name: "fly.io", url: "https://fly.io" },
+    ],
+    description:
+      "Tiny animated latency/readiness indicator for compact pills, leaderboards, and status rows. Use the visible label for latency text, or `dotLabel` when the indicator is icon-only.",
+    examples: [
+      {
+        title: "Latency row",
+        Demo: () => (
+          <div style={{ display: "flex", gap: 16, alignItems: "center", flexWrap: "wrap" }}>
+            <LatencyPing label="18ms" tone="good" />
+            <LatencyPing label="queued" tone="warn" />
+            <LatencyPing label="cold" tone="danger" />
+            <LatencyPing label="warm" tone="neutral" pulse={false} />
+          </div>
+        ),
+        code: `<LatencyPing label="18ms" tone="good" />
+<LatencyPing label="queued" tone="warn" />
+<LatencyPing label="cold" tone="danger" />
+<LatencyPing label="warm" tone="neutral" pulse={false} />`,
+      },
+      {
+        title: "Icon-only",
+        Demo: () => <LatencyPing tone="warn" dotLabel="Queued request" />,
+        code: `<LatencyPing tone="warn" dotLabel="Queued request" />`,
+      },
+    ],
+    props: [
+      { name: "label", type: "ReactNode", desc: "Visible latency/readiness text." },
+      { name: "tone", type: '"good" | "warn" | "danger" | "neutral"', default: '"neutral"', desc: "Signal color tone." },
+      { name: "pulse", type: "boolean", default: "true", desc: "Animate the signal ring." },
+      { name: "dotLabel", type: "string", desc: "Accessible label when no visible label is provided." },
+    ],
+  },
+
+  {
+    slug: "model-chip",
+    category: "Atoms",
+    name: "ModelChip",
+    isNew: true,
+    snark: "Because every dropdown needs a geopolitical status badge.",
+    sources: [
+      { name: "openai.com", url: "https://openai.com" },
+      { name: "anthropic.com", url: "https://www.anthropic.com" },
+      { name: "ollama.com", url: "https://ollama.com" },
+    ],
+    description:
+      "Compact model badge with provider, tier tone, context window, and active state. Use it in composers, inspectors, leaderboards, and dense model selectors.",
+    examples: [
+      {
+        title: "Frontier model",
+        Demo: () => (
+          <ModelChip provider="OpenAI" tier="frontier" context="128k" active>
+            GPT-4.1
+          </ModelChip>
+        ),
+        code: `<ModelChip provider="OpenAI" tier="frontier" context="128k" active>
+  GPT-4.1
+</ModelChip>`,
+      },
+      {
+        title: "Local model",
+        Demo: () => (
+          <ModelChip provider="local" tier="local" context="32k" size="sm">
+            Llama 3.1
+          </ModelChip>
+        ),
+        code: `<ModelChip provider="local" tier="local" context="32k" size="sm">
+  Llama 3.1
+</ModelChip>`,
+      },
+    ],
+    props: [
+      { name: "children", type: "ReactNode", required: true, desc: "Model name or label." },
+      { name: "provider", type: "ReactNode", desc: "Provider label." },
+      { name: "tier", type: '"frontier" | "classic" | "local" | "custom"', default: '"frontier"', desc: "Positioning tone." },
+      { name: "context", type: "ReactNode", desc: "Context window label." },
+      { name: "size", type: '"sm" | "md"', default: '"md"', desc: "Badge density." },
+      { name: "active", type: "boolean", desc: "Marks the selected model." },
+    ],
+  },
+
+  {
+    slug: "token-badge",
+    category: "Atoms",
+    name: "TokenBadge",
+    isNew: true,
+    snark: "Because every prompt needs a receipt.",
+    sources: [
+      { name: "platform.openai.com", url: "https://platform.openai.com/usage" },
+      { name: "vercel.com", url: "https://vercel.com" },
+      { name: "linear.app", url: "https://linear.app" },
+    ],
+    description:
+      "Inline token, credit, or cost capsule for prompt surfaces, usage meters, and compact billing readouts.",
+    usage:
+      "Use `value` for the primary number, `label` for supporting context, and `tone` when the value needs status semantics.",
+    examples: [
+      {
+        title: "Usage row",
+        Demo: () => (
+          <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
+            <TokenBadge value="12.4k tokens" />
+            <TokenBadge value="$0.018" label="est." tone="good" />
+            <TokenBadge value="240" label="credits" tone="warn" compact />
+          </div>
+        ),
+        code: `<TokenBadge value="12.4k tokens" />
+<TokenBadge value="$0.018" label="est." tone="good" />
+<TokenBadge value="240" label="credits" tone="warn" compact />`,
+      },
+      {
+        title: "No icon",
+        Demo: () => <TokenBadge value="$4.20" label="daily cap" tone="danger" icon={false} />,
+        code: `<TokenBadge value="$4.20" label="daily cap" tone="danger" icon={false} />`,
+      },
+    ],
+    props: [
+      { name: "value", type: "ReactNode", required: true, desc: "Primary token, credit, or cost value." },
+      { name: "label", type: "ReactNode", desc: "Optional supporting label." },
+      { name: "tone", type: '"neutral" | "good" | "warn" | "danger"', default: '"neutral"', desc: "Visual tone." },
+      { name: "icon", type: "ReactNode | false", desc: "Leading icon. False hides it." },
+      { name: "compact", type: "boolean", desc: "Tightens spacing for dense surfaces." },
+    ],
+  },
+
+  {
+    slug: "confidence-meter",
+    category: "Atoms",
+    name: "ConfidenceMeter",
+    isNew: true,
+    snark: "A tiny bar for when the model says trust me.",
+    sources: [
+      { name: "openai.com", url: "https://openai.com" },
+      { name: "linear.app", url: "https://linear.app" },
+      { name: "vercel.com", url: "https://vercel.com" },
+    ],
+    description:
+      "Inline confidence bar or segmented score indicator for evals, retrieval quality, and agent certainty. Values are clamped to 0-100 and exposed with progress semantics.",
+    examples: [
+      {
+        title: "Inline retrieval quality",
+        Demo: () => (
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>
+            <ConfidenceMeter value={82} label="Retrieval" tone="good" showValue />
+          </span>
+        ),
+        code: `<ConfidenceMeter value={82} label="Retrieval" tone="good" showValue />`,
+      },
+      {
+        title: "Segmented certainty",
+        Demo: () => (
+          <ConfidenceMeter value={64} label="Agent certainty" tone="warn" segments={5} showValue />
+        ),
+        code: `<ConfidenceMeter value={64} label="Agent certainty" tone="warn" segments={5} showValue />`,
+      },
+    ],
+    props: [
+      { name: "value", type: "number", required: true, desc: "Confidence score from 0-100. Values outside the range are clamped." },
+      { name: "label", type: "ReactNode", desc: "Optional inline label before the meter." },
+      { name: "tone", type: '"neutral" | "good" | "warn" | "danger"', default: '"neutral"', desc: "Visual tone for the meter fill." },
+      { name: "segments", type: "number", desc: "Render equal score segments instead of a continuous bar. Clamped to 2-12 when provided." },
+      { name: "showValue", type: "boolean", desc: "Show the clamped numeric value after the meter." },
+    ],
+  },
+
+  {
+    slug: "source-glyph",
+    category: "Atoms",
+    name: "SourceGlyph",
+    isNew: true,
+    snark: "A footnote with a credit score.",
+    sources: [
+      { name: "perplexity.ai", url: "https://www.perplexity.ai" },
+      { name: "arc.net", url: "https://arc.net" },
+      { name: "notebooklm.google", url: "https://notebooklm.google" },
+    ],
+    description:
+      "Small citation/source marker that renders a logo, index number, or trust state. Use it inline in text, source lists, and evidence rows.",
+    examples: [
+      {
+        title: "Indexed citation",
+        Demo: () => (
+          <span style={{ display: "inline-flex", gap: 8, alignItems: "center" }}>
+            <SourceGlyph index={2} tone="trusted" size="sm" /> Verified source
+          </span>
+        ),
+        code: `<SourceGlyph index={2} tone="trusted" size="sm" />`,
+      },
+      {
+        title: "Logo source",
+        Demo: () => <SourceGlyph src={ic("github")} alt="GitHub" />,
+        code: `<SourceGlyph src={ic("github")} alt="GitHub" />`,
+      },
+      {
+        title: "Custom marker",
+        Demo: () => <SourceGlyph tone="warn">AI</SourceGlyph>,
+        code: `<SourceGlyph tone="warn">AI</SourceGlyph>`,
+      },
+    ],
+    props: [
+      { name: "children", type: "ReactNode", desc: "Fallback marker content when `src` and `index` are not provided." },
+      { name: "index", type: "number", desc: "Citation index shown when no `src` is provided." },
+      { name: "src", type: "string", desc: "Logo or source image URL." },
+      { name: "alt", type: "string", default: '""', desc: "Accessible label for the image. Empty by default for decorative marks." },
+      { name: "tone", type: '"neutral" | "trusted" | "warn" | "danger"', default: '"neutral"', desc: "Trust/risk state." },
+      { name: "size", type: '"sm" | "md"', default: '"md"', desc: "Glyph size." },
     ],
   },
 
@@ -1587,11 +1814,258 @@ export const COMPONENTS: ComponentMeta[] = [
     ],
   },
 
-  /* ============================ NARRATIVE & PROOF ============================ */
+  /* ============================ ANOTHER SET ============================ */
+  {
+    slug: "model-leaderboard",
+    category: "Social Proof",
+    name: "ModelLeaderboard",
+    isNew: true,
+    snark: "Benchmarks, but conveniently cropped.",
+    sources: [
+      { name: "artificialanalysis.ai", url: "https://artificialanalysis.ai" },
+      { name: "lmarena.ai", url: "https://lmarena.ai" },
+      { name: "openai.com", url: "https://openai.com" },
+    ],
+    extra: 1120,
+    description:
+      "A ranked benchmark panel for model claims, eval theater, and suspiciously specific latency bragging. Pass `models` for the quick form or compose rows manually.",
+    examples: [
+      {
+        title: "Eval board",
+        Demo: () => (
+          <ModelLeaderboard
+            title="Frontier evals"
+            caption="Weighted for demos, decks, and investor memory."
+            metricLabel="SWE-bench-ish"
+            models={[
+              { name: "Synthetica Max", vendor: "internal", score: 98.7, label: "98.7", delta: "+4.2", tone: "good" },
+              { name: "Consensus 4.1", vendor: "frontier", score: 91.4, label: "91.4", delta: "+1.1" },
+              { name: "Legacy Copilot", vendor: "classic", score: 72.8, label: "72.8", delta: "-3.0", tone: "warn" },
+            ]}
+          />
+        ),
+        code: `<ModelLeaderboard
+  title="Frontier evals"
+  metricLabel="SWE-bench-ish"
+  models={[
+    { name: "Synthetica Max", vendor: "internal", score: 98.7, label: "98.7", delta: "+4.2", tone: "good" },
+    { name: "Consensus 4.1", vendor: "frontier", score: 91.4, label: "91.4" },
+    { name: "Legacy Copilot", vendor: "classic", score: 72.8, label: "72.8", tone: "warn" },
+  ]}
+/>`,
+      },
+    ],
+    props: [
+      { name: "models", type: "ModelLeaderboardModel[]", desc: "Quick-form ranked model rows." },
+      { name: "title", type: "ReactNode", desc: "Optional panel heading." },
+      { name: "caption", type: "ReactNode", desc: "Optional supporting copy." },
+      { name: "metricLabel", type: "ReactNode", desc: "Small label for the score column." },
+      { name: "maxScore", type: "number", default: "100", desc: "Score used to normalize bar width." },
+      { name: "compact", type: "boolean", default: "false", desc: "Reduce padding and row height." },
+      { name: "animated", type: "boolean", default: "true", desc: "Enable row/bar entrance motion." },
+    ],
+    subprops: [
+      { name: "ModelLeaderboard.Row", props: [
+        { name: "score", type: "number", desc: "Score used for the bar fill." },
+        { name: "maxScore", type: "number", default: "100", desc: "Score maximum." },
+        { name: "tone", type: '"neutral" | "good" | "warn" | "danger"', desc: "Row tone." },
+      ] },
+      { name: "ModelLeaderboard.Name", props: [{ name: "vendor", type: "ReactNode", desc: "Small vendor label." }] },
+      { name: "ModelLeaderboard.Score", props: [{ name: "delta", type: "ReactNode", desc: "Small delta shown beside the score." }] },
+    ],
+  },
+
+  {
+    slug: "agent-runway",
+    category: "Surfaces",
+    name: "AgentRunway",
+    isNew: true,
+    snark: "Multi-agent orchestration, now with choreography.",
+    sources: [
+      { name: "cursor.com", url: "https://cursor.com" },
+      { name: "replit.com", url: "https://replit.com" },
+      { name: "linear.app", url: "https://linear.app" },
+    ],
+    extra: 990,
+    description:
+      "A sequential handoff surface for agent teams, background tools, and build pipelines. Use it when the product needs to make invisible automation feel legible.",
+    examples: [
+      {
+        title: "Agent handoff",
+        stretch: true,
+        Demo: () => (
+          <div style={{ padding: 24 }}>
+            <AgentRunway
+              title="Launch crew"
+              summary="Every role gets a lane, a status, and just enough output to look supervised."
+              items={[
+                { name: "Planner", role: "strategy", output: "Scoped the investor-safe narrative.", status: "done" },
+                { name: "Builder", role: "interface", output: "Assembling the conversion surface.", status: "running" },
+                { name: "Reviewer", role: "taste", output: "Waiting to reject generic cards.", status: "idle" },
+              ]}
+            />
+          </div>
+        ),
+        code: `<AgentRunway
+  title="Launch crew"
+  items={[
+    { name: "Planner", role: "strategy", output: "Scoped the investor-safe narrative.", status: "done" },
+    { name: "Builder", role: "interface", output: "Assembling the conversion surface.", status: "running" },
+    { name: "Reviewer", role: "taste", output: "Waiting to reject generic cards.", status: "idle" },
+  ]}
+/>`,
+      },
+    ],
+    props: [
+      { name: "items", type: "AgentRunwayItem[]", desc: "Quick-form agent sequence." },
+      { name: "title", type: "ReactNode", desc: "Optional section heading." },
+      { name: "summary", type: "ReactNode", desc: "Optional supporting copy." },
+      { name: "orientation", type: '"horizontal" | "vertical"', default: '"horizontal"', desc: "Track layout." },
+      { name: "animated", type: "boolean", default: "true", desc: "Enable status pulse and entrance motion." },
+    ],
+    subprops: [
+      { name: "AgentRunway.Item", props: [{ name: "status", type: '"idle" | "running" | "done" | "blocked"', desc: "Agent status." }] },
+      { name: "AgentRunway.Status", props: [{ name: "status", type: '"idle" | "running" | "done" | "blocked"', desc: "Status tone." }] },
+    ],
+  },
+
+  {
+    slug: "prompt-composer",
+    category: "Conversation",
+    name: "PromptComposer",
+    isNew: true,
+    snark: "A textarea with enough ceremony to close a seed round.",
+    sources: [
+      { name: "chatgpt.com", url: "https://chatgpt.com" },
+      { name: "claude.ai", url: "https://claude.ai" },
+      { name: "perplexity.ai", url: "https://www.perplexity.ai" },
+    ],
+    extra: 1480,
+    description:
+      "A prompt panel with suggestions, model label, and submit CTA. It supports controlled and uncontrolled value handling for real demos.",
+    examples: [
+      {
+        title: "Prompt panel",
+        Demo: () => (
+          <PromptComposer
+            model="Synthetica Max"
+            placeholder="Ask for the launch page to sound inevitable..."
+            suggestions={[
+              { label: "Make it enterprise" },
+              { label: "Add urgency" },
+              { label: "Remove obvious claims", value: "Rewrite this as proof, not promise." },
+            ]}
+            onSubmit={(value: string) => alert(value)}
+          />
+        ),
+        code: `<PromptComposer
+  model="Synthetica Max"
+  placeholder="Ask for the launch page to sound inevitable..."
+  suggestions={[
+    { label: "Make it enterprise" },
+    { label: "Add urgency" },
+    { label: "Remove obvious claims", value: "Rewrite this as proof, not promise." },
+  ]}
+  onSubmit={(value) => runPrompt(value)}
+/>`,
+      },
+    ],
+    props: [
+      { name: "placeholder", type: "string", desc: "Textarea placeholder." },
+      { name: "defaultValue", type: "string", desc: "Initial uncontrolled value." },
+      { name: "value", type: "string", desc: "Controlled value." },
+      { name: "suggestions", type: "PromptComposerSuggestion[]", desc: "Suggestion chips." },
+      { name: "model", type: "ReactNode", default: '"GPT-5"', desc: "Model label in the footer." },
+      { name: "ctaLabel", type: "ReactNode", default: '"Generate"', desc: "Submit button label." },
+      { name: "rows", type: "number", default: "4", desc: "Textarea row count." },
+      { name: "onValueChange", type: "(value: string) => void", desc: "Change callback." },
+      { name: "onSubmit", type: "(value: string) => void", desc: "Submit callback." },
+    ],
+    subprops: [
+      { name: "PromptComposer.Field", props: [] },
+      { name: "PromptComposer.Suggestion", props: [] },
+      { name: "PromptComposer.Model", props: [] },
+    ],
+  },
+
+  {
+    slug: "fomo-feed",
+    category: "Social Proof",
+    name: "FomoFeed",
+    isNew: true,
+    snark: "Someone important is totally looking at this page.",
+    sources: [
+      { name: "producthunt.com", url: "https://www.producthunt.com" },
+      { name: "stripe.com", url: "https://stripe.com" },
+      { name: "vercel.com", url: "https://vercel.com" },
+    ],
+    extra: 2030,
+    description:
+      "A quiet activity feed or ticker for launch momentum, investor interest, and waitlist motion. It keeps urgency visible without turning the page into a slot machine.",
+    examples: [
+      {
+        title: "Live feed",
+        Demo: () => (
+          <FomoFeed
+            title="Live demand"
+            caption="Activity from the last few very curated minutes."
+            items={[
+              { label: "Partner at Tier 1 joined the memo", meta: "seed list", time: "now", tone: "good" },
+              { label: "24 teams are viewing pricing", meta: "enterprise", time: "2m", tone: "warn" },
+              { label: "Design founder requested access", meta: "waitlist", time: "5m" },
+            ]}
+          />
+        ),
+        code: `<FomoFeed
+  title="Live demand"
+  items={[
+    { label: "Partner at Tier 1 joined the memo", meta: "seed list", time: "now", tone: "good" },
+    { label: "24 teams are viewing pricing", meta: "enterprise", time: "2m", tone: "warn" },
+    { label: "Design founder requested access", meta: "waitlist", time: "5m" },
+  ]}
+/>`,
+      },
+      {
+        title: "Ticker",
+        Demo: () => (
+          <FomoFeed
+            variant="ticker"
+            items={[
+              { label: "Demo booked", meta: "Series A" },
+              { label: "Procurement opened", meta: "enterprise", tone: "good" },
+              { label: "Investor refreshed", meta: "again", tone: "warn" },
+            ]}
+          />
+        ),
+        code: `<FomoFeed
+  variant="ticker"
+  items={[
+    { label: "Demo booked", meta: "Series A" },
+    { label: "Procurement opened", meta: "enterprise", tone: "good" },
+    { label: "Investor refreshed", meta: "again", tone: "warn" },
+  ]}
+/>`,
+      },
+    ],
+    props: [
+      { name: "items", type: "FomoFeedItem[]", desc: "Quick-form activity rows." },
+      { name: "title", type: "ReactNode", desc: "Optional feed heading." },
+      { name: "caption", type: "ReactNode", desc: "Optional supporting copy." },
+      { name: "variant", type: '"feed" | "ticker"', default: '"feed"', desc: "Stacked feed or ticker treatment." },
+      { name: "animated", type: "boolean", default: "true", desc: "Enable subtle motion." },
+    ],
+    subprops: [
+      { name: "FomoFeed.Item", props: [{ name: "tone", type: '"neutral" | "good" | "warn" | "danger"', desc: "Item tone." }] },
+      { name: "FomoFeed.Marker", props: [{ name: "tone", type: '"neutral" | "good" | "warn" | "danger"', desc: "Marker tone." }] },
+    ],
+  },
+
+  /* ============================ ADDED COMPONENTS ============================ */
   {
     slug: "security-theater",
-    category: "Narrative & Proof",
+    category: "Surfaces",
     name: "SecurityTheater",
+    isNew: true,
     snark: "Compliance, but make it investor-readable.",
     sources: [
       { name: "vercel.com", url: "https://vercel.com" },
@@ -1687,8 +2161,9 @@ export const COMPONENTS: ComponentMeta[] = [
 
   {
     slug: "launch-timeline",
-    category: "Narrative & Proof",
+    category: "Surfaces",
     name: "LaunchTimeline",
+    isNew: true,
     snark: "The day everything becomes generally available.",
     sources: [
       { name: "producthunt.com", url: "https://www.producthunt.com" },
@@ -1739,8 +2214,9 @@ export const COMPONENTS: ComponentMeta[] = [
 
   {
     slug: "metric-stack",
-    category: "Narrative & Proof",
+    category: "Social Proof",
     name: "MetricStack",
+    isNew: true,
     snark: "The KPI grid went on a cleanse.",
     sources: [
       { name: "stripe.com", url: "https://stripe.com" },
@@ -1791,8 +2267,9 @@ export const COMPONENTS: ComponentMeta[] = [
 
   {
     slug: "scroll-narrative",
-    category: "Narrative & Proof",
+    category: "Heroes",
     name: "ScrollNarrative",
+    isNew: true,
     snark: "Because the workflow needs a dramatic pause.",
     sources: [
       { name: "framer.com", url: "https://www.framer.com" },

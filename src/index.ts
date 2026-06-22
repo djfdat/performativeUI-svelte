@@ -10,6 +10,33 @@ import "./styles.css";
 export { Sparkle, type SparkleProps } from "./components/Sparkle";
 export { GradientText, type GradientTextProps } from "./components/GradientText";
 export { StatusDot, type StatusDotProps } from "./components/StatusDot";
+export {
+  LatencyPing,
+  type LatencyPingProps,
+  type LatencyPingTone,
+} from "./components/LatencyPing";
+export {
+  ModelChip,
+  type ModelChipProps,
+  type ModelChipTier,
+  type ModelChipSize,
+} from "./components/ModelChip";
+export {
+  TokenBadge,
+  type TokenBadgeProps,
+  type TokenBadgeTone,
+} from "./components/TokenBadge";
+export {
+  ConfidenceMeter,
+  type ConfidenceMeterProps,
+  type ConfidenceMeterTone,
+} from "./components/ConfidenceMeter";
+export {
+  SourceGlyph,
+  type SourceGlyphProps,
+  type SourceGlyphTone,
+  type SourceGlyphSize,
+} from "./components/SourceGlyph";
 
 // Primitives
 export {
@@ -67,6 +94,17 @@ export {
   type LaunchTimelineProps,
   type LaunchTimelineItem,
 } from "./components/LaunchTimeline";
+export {
+  AgentRunway,
+  type AgentRunwayProps,
+  type AgentRunwayItem,
+  type AgentRunwayStatus,
+} from "./components/AgentRunway";
+export {
+  ModelLeaderboard,
+  type ModelLeaderboardProps,
+  type ModelLeaderboardModel,
+} from "./components/ModelLeaderboard";
 
 // Conversation
 export {
@@ -76,6 +114,11 @@ export {
 } from "./components/ChatBubble";
 export { TokenStream, type TokenStreamProps } from "./components/TokenStream";
 export { ChatFAB, type ChatFABProps } from "./components/ChatFAB";
+export {
+  PromptComposer,
+  type PromptComposerProps,
+  type PromptComposerSuggestion,
+} from "./components/PromptComposer";
 
 // Social proof
 export {
@@ -93,6 +136,12 @@ export {
   CommunityBadge,
   type CommunityBadgeProps,
 } from "./components/CommunityBadge";
+export {
+  FomoFeed,
+  type FomoFeedProps,
+  type FomoFeedItem,
+  type FomoFeedTone,
+} from "./components/FomoFeed";
 
 // Pricing / waitlist
 export { PricingCard, type PricingCardProps } from "./components/PricingCard";

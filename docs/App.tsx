@@ -133,7 +133,13 @@ function Sidebar({
                   "sidebar__link" + (isActive ? " sidebar__link--active" : "")
                 }
               >
-                {c.name}
+                <span className="sidebar__link-name">{c.name}</span>
+                {c.isNew && (
+                  <span className="sidebar__new-icon" aria-hidden="true">
+                    +
+                  </span>
+                )}
+                {c.isNew && <span className="sr-only">New</span>}
               </NavLink>
             ))}
           </nav>
